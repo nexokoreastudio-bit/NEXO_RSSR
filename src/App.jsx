@@ -82,9 +82,9 @@ const App = () => {
   ];
 
   const sizeOptions = [
-    { size: '65', label: '추천', area: '8~10평', students: '5~8명', note: '공부방 사용. 성공운 회원 대다수 선택', recommended: true },
-    { size: '75', label: '표준', area: '10~15평', students: '10~15명', note: '중규모 교실용', recommended: false },
-    { size: '86', label: '대형', area: '15평+', students: '20명+', note: '거거익선', recommended: false },
+    { size: '65', area: '8~10평 미만', students: '5~8명 내외', dimensions: '가로 1470.9mm × 세로 930mm' },
+    { size: '75', area: '10~15평', students: '10~15명', dimensions: '가로 1692.1mm × 세로 1050mm' },
+    { size: '86', area: '15평 이상', students: '20명 이상', dimensions: '가로 1943.4mm × 세로 1193mm' },
   ];
 
   const youtubeVideos = [
@@ -111,7 +111,7 @@ const App = () => {
       { q: '렌탈하면 신용등급 영향 있나요?', a: '아니요. B2B 렌탈이라 개인 신용과 무관해요. (사업자등록증 필요)' },
     ],
     공부방: [
-      { q: '공부방·집에서 65인치면 충분할까요?', a: '네, 충분해요. 성공운 회원님 대다수가 공부방·집 사용으로 65인치를 선택하십니다. 8~10평, 학생 5~8명 환경에 최적이에요.' },
+      { q: '공부방·집에서 전자칠판 사용하기에 적합할까요?', a: '네, 적합해요. 공간 규모와 수강 인원에 맞는 인치를 선택하시면 됩니다. 8~10평·5~8명은 65인치, 10~15평·10~15명은 75인치, 15평 이상·20명 이상은 86인치를 추천드려요.' },
       { q: '아파트 거실이나 작은 방에 설치해도 되나요?', a: '네, 가능합니다. 벽걸이 또는 이동형 스탠드 선택이 가능해요.' },
       { q: '학생이 5~6명인데 괜찮을까요?', a: '65인치면 5~8명 수강생까지 무리 없어요. 50포인트 멀티터치로 여러 명이 동시에 칠판에 필기할 수 있어서 소규모 공부방에 적합합니다.' },
       { q: '집에서 쓰는데 PC 없이 전자칠판만으로 수업 가능한가요?', a: '네, 가능해요. UMIND 판서, Eshare로 폰·태블릿 연결, Quick Share로 교재 사진 공유까지 전자칠판 단독으로 수업하시는 원장님이 많습니다.' },
@@ -370,11 +370,13 @@ const App = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {sizeOptions.map((opt, i) => (
-              <div key={i} className={`rounded-2xl p-6 text-center bg-white border-2 ${opt.recommended ? 'border-accent shadow-lg' : 'border-neutral-100'}`}>
-                {opt.recommended && <span className="inline-block bg-accent text-white text-xs font-bold px-3 py-1 rounded-full mb-3">추천</span>}
-                <div className="font-black text-4xl md:text-5xl text-neutral-900 mb-2">{opt.size}<span className="text-lg font-normal text-neutral-500">인치</span></div>
-                <div className="text-sm text-neutral-600 mb-2">{opt.area} · {opt.students}</div>
-                <p className="text-xs text-neutral-500">{opt.note}</p>
+              <div key={i} className="rounded-2xl p-6 text-center bg-white border-2 border-accent">
+                <div className="font-black text-4xl md:text-5xl text-neutral-900 mb-3">{opt.size}<span className="text-lg font-normal text-neutral-500">인치</span></div>
+                <div className="text-sm text-neutral-600 space-y-1 text-left bg-surfaceAlt rounded-xl px-4 py-3">
+                  <p>추천 평수: {opt.area}</p>
+                  <p>수강 인원: {opt.students}</p>
+                  <p className="text-xs">사이즈: {opt.dimensions}</p>
+                </div>
               </div>
             ))}
           </div>
