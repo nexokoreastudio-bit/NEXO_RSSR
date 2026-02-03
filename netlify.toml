@@ -10,3 +10,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
+
+# develop 브랜치 = 테스트/개발 모드 배포 (Branch deploy)
+[context.branch-deploy]
+  command = "npm run build"
