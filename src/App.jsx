@@ -207,7 +207,9 @@ const App = () => {
 
       {/* Hero */}
       <section className="pt-[3.5rem] pb-0 bg-surface">
-        <img src="/hero-main.png" alt="NEXO 전자칠판 공동구매" className="w-full max-w-[1024px] h-auto object-contain mx-auto" />
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <img src="/hero-main.png" alt="NEXO 전자칠판 공동구매" className="w-full h-auto object-contain" />
+        </div>
       </section>
 
       {/* 핵심 가치 4카드 - 짧고 강력 */}
