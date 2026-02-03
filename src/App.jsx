@@ -82,7 +82,7 @@ const App = () => {
   ];
 
   const sizeOptions = [
-    { size: '65', label: '추천', area: '8~10평', students: '5~8명', note: '공부방·집 사용. 성공운 회원 대다수 선택', recommended: true },
+    { size: '65', label: '추천', area: '8~10평', students: '5~8명', note: '공부방 사용. 성공운 회원 대다수 선택', recommended: true },
     { size: '75', label: '표준', area: '10~15평', students: '10~15명', note: '중규모 교실용', recommended: false },
     { size: '86', label: '대형', area: '15평+', students: '20명+', note: '거거익선', recommended: false },
   ];
