@@ -36,14 +36,15 @@ exports.handler = async (event, context) => {
     }
 
     const {
+      naver_id,
       customer_name,
-      org_name,
       phone_number,
-      region,
-      size,
+      org_name,
+      address,
+      order_summary,
       mount_type,
-      quantity,
-      inquiry,
+      elevator,
+      payment,
     } = body;
 
     const auth = new google.auth.GoogleAuth({
@@ -57,22 +58,21 @@ exports.handler = async (event, context) => {
     const sheets = google.sheets({ version: 'v4', auth });
     const meta = await sheets.spreadsheets.get({ spreadsheetId: GOOGLE_SHEET_ID });
     const firstSheetTitle = meta.data.sheets?.[0]?.properties?.title || 'Sheet1';
-    const range = `'${firstSheetTitle}'!A:J`;
+    const range = `'${firstSheetTitle}'!A:K`;
 
     const timestamp = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
-    const mountLabel = mount_type === 'stand' ? '이동형 스탠드' : '벽걸이';
-    const sizeLabel = size ? `${size}인치` : '';
 
     const rowValues = [
       timestamp,
+      naver_id || '',
       customer_name || '',
-      org_name || '',
       phone_number || '',
-      region || '',
-      sizeLabel,
-      mountLabel,
-      quantity || '',
-      inquiry || '',
+      org_name || '',
+      address || '',
+      order_summary || '',
+      mount_type || '',
+      elevator || '',
+      payment || '',
       '성공운',
     ];
 

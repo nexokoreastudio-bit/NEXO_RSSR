@@ -21,12 +21,35 @@ const scrollToOrder = () => {
   document.getElementById('order')?.scrollIntoView({ behavior: 'smooth' });
 };
 
+const mountOptions = [
+  { value: 'stand', label: '이동형 스탠드' },
+  { value: 'wall_concrete', label: '벽부착-콘크리트' },
+  { value: 'wall_gypsum', label: '벽부착-합판/석고보드' },
+  { value: 'wall_etc', label: '벽부착-기타' },
+];
+
+const elevatorOptions = [
+  { value: 'yes', label: '있음' },
+  { value: 'ladder_ok', label: '없음(사다리차 가능)' },
+  { value: 'ladder_no', label: '없음(사다리차 불가능)' },
+];
+
+const paymentOptions = [
+  { value: 'transfer', label: '계좌이체(세금계산서 or 현금영수증)' },
+  { value: 'card', label: '카드' },
+  { value: 'rental', label: '렌탈(추가 서류 필요)' },
+  { value: 'etc', label: '기타' },
+];
+
 const App = () => {
   const [activeFAQ, setActiveFAQ] = useState(null);
   const [activeFAQTab, setActiveFAQTab] = useState('공부방');
-  const [selectedSize, setSelectedSize] = useState('');
-  const [selectedMountType, setSelectedMountType] = useState('wall');
-  const [selectedQuantity, setSelectedQuantity] = useState('');
+  const [qty65, setQty65] = useState(0);
+  const [qty75, setQty75] = useState(0);
+  const [qty86, setQty86] = useState(0);
+  const [mountType, setMountType] = useState('');
+  const [elevator, setElevator] = useState('');
+  const [payment, setPayment] = useState('');
   const orderFormRef = useRef(null);
 
   // 가치 중심 카피 (짧고 강력)
@@ -34,21 +57,21 @@ const App = () => {
     { icon: Target, title: '수업이 바뀐다', desc: '2D·3D 그래프, PDF 위 판서, 9대 동시 화면 공유', color: 'accent' },
     { icon: Clock, title: '시간이 절약된다', desc: '케이블 3초 연결, 원터치 녹화, OTA 자동 업데이트', color: 'accent' },
     { icon: Zap, title: '학생이 참여한다', desc: '50포인트 터치, 폰으로 바로 공유, QR로 즉시 전달', color: 'accent' },
-    { icon: Shield, title: '운영이 편해진다', desc: '저녁까지 A/S, 무상 2년, 원격 지원', color: 'accent' },
+    { icon: Shield, title: '운영이 편해진다', desc: '저녁까지 A/S, 무상 1년, 원격 지원', color: 'accent' },
   ];
 
   const chatMessages = [
     { type: 'user', text: '전자칠판 공구 가격이 부담되는데...' },
     { type: 'admin', text: '성공운 회원 전용 공동구매로 진행 중이에요.' },
     { type: 'user', text: '가성비 좋은 모델 알려주세요!' },
-    { type: 'admin', text: 'NX 시리즈가 딱이에요. UMIND·Eshare 기본 제공됩니다.' },
+    { type: 'admin', text: 'NX 시리즈가 딱이에요. UMIND 판서 프로그램이 기본 제공됩니다.' },
     { type: 'system', text: '성공운 원장님이 입장하셨습니다.' },
   ];
 
   const testimonials = [
     { name: '김*현 원장님', date: '24.03.12', stars: 5, text: 'UMIND 판서에 2D·3D 그래프, 각도기, 자가 다 들어있어서 수학 수업할 때 교구 준비가 필요 없어요. PDF 위에 바로 필기하는 것도 편하고, 원터치 수업 녹화로 결석생한테 보내기 딱 좋습니다.', reply: '소중한 후기 감사합니다!' },
     { name: '이*영 원장님', date: '24.02.28', stars: 5, text: 'Eshare로 노트북·아이패드 무선 연결 3초 만에 되고, Quick Share로 학생 오답 사진도 칠판에 바로 띄워요. 48MP 카메라·8 어레이 마이크 내장이라 별도 장비 없이 화상·녹화 잘 됩니다.', reply: '감사합니다!' },
-    { name: '박*수 원장님', date: '24.02.28', stars: 5, text: '무반사·ZERO-GAP 터치감이 종이에 쓰는 느낌이라 학생들 반응 좋아요. 수업 중 문제 생겨서 저녁에 전화했는데 바로 받아주시더라고요. 무상 2년에 원격 지원까지 안심입니다.', reply: '앞으로도 만족스러운 사용 되시길!' },
+    { name: '박*수 원장님', date: '24.02.28', stars: 5, text: '무반사·ZERO-GAP 터치감이 종이에 쓰는 느낌이라 학생들 반응 좋아요. 수업 중 문제 생겨서 저녁에 전화했는데 바로 받아주시더라고요. 무상 1년에 원격 지원까지 안심입니다.', reply: '앞으로도 만족스러운 사용 되시길!' },
   ];
 
   const whyNexoValues = [
@@ -89,7 +112,7 @@ const App = () => {
     ],
     공부방: [
       { q: '공부방·집에서 65인치면 충분할까요?', a: '네, 충분해요. 성공운 회원님 대다수가 공부방·집 사용으로 65인치를 선택하십니다. 8~10평, 학생 5~8명 환경에 최적이에요.' },
-      { q: '아파트 거실이나 작은 방에 설치해도 되나요?', a: '네, 가능합니다. 벽걸이 또는 이동형 스탠드 선택이 가능해요. 이동형이면 필요할 때만 꺼내 쓰실 수 있어서 공간 활용이 좋습니다.' },
+      { q: '아파트 거실이나 작은 방에 설치해도 되나요?', a: '네, 가능합니다. 벽걸이 또는 이동형 스탠드 선택이 가능해요.' },
       { q: '학생이 5~6명인데 괜찮을까요?', a: '65인치면 5~8명 수강생까지 무리 없어요. 50포인트 멀티터치로 여러 명이 동시에 칠판에 필기할 수 있어서 소규모 공부방에 적합합니다.' },
       { q: '집에서 쓰는데 PC 없이 전자칠판만으로 수업 가능한가요?', a: '네, 가능해요. UMIND 판서, Eshare로 폰·태블릿 연결, Quick Share로 교재 사진 공유까지 전자칠판 단독으로 수업하시는 원장님이 많습니다.' },
       { q: '소규모라 가격이 부담되는데 할부·할인 있나요?', a: '성공운 회원 전용 특별 할인가가 적용되고, 할부도 가능해요. 상담 신청하시면 맞춤 견적·할부 조건 안내해 드립니다.' },
@@ -101,29 +124,56 @@ const App = () => {
   const handleOrderSubmit = async (e) => {
     e.preventDefault();
     const agree = document.getElementById('privacy-agree');
-    if (!agree?.checked) { alert('개인정보 수집에 동의해주세요.'); return; }
+    if (!agree?.checked) { alert('개인정보 제3자 제공에 동의해주세요.'); return; }
     const form = e.target;
     const formData = new FormData(form);
-    if (!formData.get('size') || !formData.get('quantity')) { alert('인치와 수량을 선택해주세요.'); return; }
+
+    const naverId = (formData.get('naver_id') || '').trim();
+    const customerName = (formData.get('customer_name') || '').trim();
+    const phoneNumber = (formData.get('phone_number') || '').trim();
+    const orgName = (formData.get('org_name') || '').trim();
+    const address = (formData.get('address') || '').trim();
+    const qtyEtc = (formData.get('qty_etc') || '').trim();
+
+    if (!customerName) { alert('성함을 입력해주세요.'); return; }
+    if (!phoneNumber) { alert('연락처를 입력해주세요.'); return; }
+    if (!orgName) { alert('공부방/학원 상호명을 입력해주세요.'); return; }
+    if (!address) { alert('설치할 주소를 입력해주세요.'); return; }
+
+    const orderParts = [];
+    if (qty65 > 0) orderParts.push(`65인치 ${qty65}대`);
+    if (qty75 > 0) orderParts.push(`75인치 ${qty75}대`);
+    if (qty86 > 0) orderParts.push(`86인치 ${qty86}대`);
+    if (qtyEtc) orderParts.push(`그외 ${qtyEtc}`);
+
+    if (orderParts.length === 0) { alert('전자칠판 주문 수량을 선택해주세요.'); return; }
+    if (!mountType) { alert('설치 방법을 선택해주세요.'); return; }
+    if (!elevator) { alert('엘리베이터 여부를 선택해주세요.'); return; }
+    if (!payment) { alert('결제 방식을 선택해주세요.'); return; }
+
+    const orderSummary = orderParts.join(', ');
+
+    const formDataObj = {
+      naver_id: naverId,
+      customer_name: customerName,
+      phone_number: phoneNumber,
+      org_name: orgName,
+      address,
+      order_summary: orderSummary,
+      mount_type: mountOptions.find(o => o.value === mountType)?.label || mountType,
+      elevator: elevatorOptions.find(o => o.value === elevator)?.label || elevator,
+      payment: paymentOptions.find(o => o.value === payment)?.label || payment,
+    };
 
     const isLocalhost = typeof window !== 'undefined' && ['localhost', '127.0.0.1'].includes(window.location.hostname);
     if (isLocalhost) {
-      console.log('[성공운 주문]', Object.fromEntries(formData.entries()));
+      console.log('[성공운 주문]', formDataObj);
       alert('✅ [로컬 테스트] 콘솔에 출력되었습니다.');
-      form.reset(); setSelectedSize(''); setSelectedMountType('wall'); setSelectedQuantity('');
+      form.reset();
+      setQty65(0); setQty75(0); setQty86(0);
+      setMountType(''); setElevator(''); setPayment('');
       return;
     }
-
-    const formDataObj = {
-      customer_name: formData.get('customer_name') || '',
-      org_name: formData.get('org_name') || '',
-      phone_number: formData.get('phone_number') || '',
-      region: formData.get('region') || '',
-      size: formData.get('size') || '',
-      mount_type: formData.get('mount_type') || 'wall',
-      quantity: formData.get('quantity') || '',
-      inquiry: formData.get('inquiry') || '',
-    };
 
     try {
       const res = await fetch('/.netlify/functions/save-to-sheets', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formDataObj) });
@@ -131,7 +181,9 @@ const App = () => {
       if (!res.ok) throw new Error(body.details || body.error || '저장 실패');
       fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ 'form-name': 'nexo-success-order', ...formDataObj }).toString() }).catch(() => {});
       alert('접수되었습니다. 24시간 내 연락드리겠습니다.');
-      form.reset(); setSelectedSize(''); setSelectedMountType('wall'); setSelectedQuantity('');
+      form.reset();
+      setQty65(0); setQty75(0); setQty86(0);
+      setMountType(''); setElevator(''); setPayment('');
     } catch (err) {
       alert(err.message || '오류가 발생했습니다. 다시 시도해주세요.');
     }
@@ -162,7 +214,7 @@ const App = () => {
       <section id="value" className="py-16 md:py-20 bg-white scroll-mt-20">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
-            <p className="text-accent font-extrabold text-base tracking-widest uppercase mb-3">넥소가 주는 가치</p>
+            <p className="text-accent font-extrabold text-lg tracking-widest uppercase mb-3">넥소가 주는 가치</p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-neutral-900 leading-tight">전자칠판 하나로<br /><span className="text-accent">수업이 바뀝니다</span></h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
@@ -361,8 +413,8 @@ const App = () => {
             </div>
             <div className="bg-white rounded-2xl p-6 border border-neutral-100">
               <BookOpen className="w-8 h-8 text-accent mb-3" />
-              <h4 className="font-extrabold text-xl text-neutral-900 mb-2">무상 2년</h4>
-              <p className="text-neutral-600 text-sm">대기업보다 긴 보증. 운영 부담 ↓</p>
+              <h4 className="font-extrabold text-xl text-neutral-900 mb-2">무상 1년</h4>
+              <p className="text-neutral-600 text-sm">1년 무상 A/S와 원격 지원으로 안심하고 운영하세요</p>
             </div>
           </div>
           <p className="mt-6 text-neutral-600 text-sm"><Phone className="w-4 h-4 inline mr-1" /> <a href="tel:032-569-5771" className="text-accent font-bold">032.569.5771</a></p>
@@ -435,22 +487,98 @@ const App = () => {
             <h2 className="text-3xl md:text-4xl font-extrabold text-neutral-900 mb-3">수업의 품격을 높여보세요</h2>
             <p className="text-neutral-600 text-sm font-semibold">간단한 양식으로 견적 받기</p>
           </div>
-          <form ref={orderFormRef} name="nexo-success-order" method="POST" action="#order" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleOrderSubmit} className="space-y-4 bg-surfaceAlt p-6 md:p-8 rounded-2xl border border-neutral-100">
+          <form ref={orderFormRef} name="nexo-success-order" method="POST" action="#order" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleOrderSubmit} className="space-y-5 bg-surfaceAlt p-6 md:p-8 rounded-2xl border border-neutral-100">
             <input type="hidden" name="form-name" value="nexo-success-order" />
             <input type="hidden" name="bot-field" />
-            <div><label className="block text-sm font-bold mb-1">원장님 성함 *</label><input type="text" name="customer_name" required placeholder="홍길동" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:ring-2 focus:ring-accent/30" /></div>
-            <div><label className="block text-sm font-bold mb-1">학원명</label><input type="text" name="org_name" placeholder="OO학원" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white" /></div>
-            <div><label className="block text-sm font-bold mb-1">연락처 *</label><input type="tel" name="phone_number" required placeholder="010-0000-0000" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:ring-2 focus:ring-accent/30" /></div>
-            <div><label className="block text-sm font-bold mb-1">지역/설치환경 *</label><input type="text" name="region" required placeholder="서울 강남 / 3층" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white" /></div>
-            <div><label className="block text-sm font-bold mb-1">인치 *</label><select name="size" required value={selectedSize} onChange={(e) => setSelectedSize(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white"><option value="">선택</option><option value="65">65</option><option value="75">75</option><option value="86">86</option></select></div>
-            <div><label className="block text-sm font-bold mb-1">설치 *</label><select name="mount_type" value={selectedMountType} onChange={(e) => setSelectedMountType(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white"><option value="wall">벽걸이</option><option value="stand">이동형</option></select></div>
-            <div><label className="block text-sm font-bold mb-1">수량 *</label><select name="quantity" required value={selectedQuantity} onChange={(e) => setSelectedQuantity(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white"><option value="">선택</option><option value="1">1대</option><option value="2">2대</option><option value="3">3대</option><option value="4">4대</option><option value="5">5대</option><option value="6+">6대+</option></select></div>
-            <div><label className="block text-sm font-bold mb-1">문의</label><textarea name="inquiry" rows="2" placeholder="궁금한 점" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white resize-none" /></div>
-            <div className="bg-white rounded-xl p-4 border border-neutral-200">
-              <p className="font-extrabold text-base md:text-lg mb-2">성공운 혜택</p>
-              <ul className="text-sm text-neutral-600 space-y-1"><li>· 특별 할인가</li><li>· 무료 설치·교육</li><li>· UMIND·Eshare·Quick Share 기본</li></ul>
+
+            <div><label className="block text-sm font-bold mb-1">1. 네이버 아이디 / 카페 닉네임</label><input type="text" name="naver_id" maxLength={100} placeholder="참여자의 답변 입력란 (최대 100자)" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:ring-2 focus:ring-accent/30" /></div>
+
+            <div><label className="block text-sm font-bold mb-1">2. 성함 *</label><input type="text" name="customer_name" required maxLength={100} placeholder="참여자의 답변 입력란 (최대 100자)" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:ring-2 focus:ring-accent/30" /></div>
+
+            <div><label className="block text-sm font-bold mb-1">3. 연락처 (010-0000-0000) *</label><input type="tel" name="phone_number" required maxLength={100} placeholder="참여자의 답변 입력란 (최대 100자)" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:ring-2 focus:ring-accent/30" /></div>
+
+            <div><label className="block text-sm font-bold mb-1">4. 공부방 / 학원 상호명 *</label><input type="text" name="org_name" required maxLength={2000} placeholder="참여자의 답변 입력란 (최대 2000자)" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:ring-2 focus:ring-accent/30" /></div>
+
+            <div><label className="block text-sm font-bold mb-1">5. 설치할 주소 (정확한 주소) *</label><input type="text" name="address" required maxLength={100} placeholder="참여자의 답변 입력란 (최대 100자)" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:ring-2 focus:ring-accent/30" /></div>
+
+            <div>
+              <label className="block text-sm font-bold mb-2">6. 전자칠판 주문 수량 *</label>
+              <p className="text-xs text-neutral-500 mb-2">인치별 대수를 선택하세요. (예: 65인치 1대, 75인치 2대)</p>
+              <div className="grid grid-cols-3 gap-3 mb-2">
+                <div className="bg-white rounded-xl p-3 border border-neutral-200">
+                  <span className="block text-xs font-medium text-neutral-600 mb-1">65인치</span>
+                  <select name="qty_65" value={qty65} onChange={(e) => setQty65(Number(e.target.value))} className="w-full px-3 py-2 rounded-lg border border-neutral-200 bg-white text-sm">
+                    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => <option key={n} value={n}>{n}대</option>)}
+                  </select>
+                </div>
+                <div className="bg-white rounded-xl p-3 border border-neutral-200">
+                  <span className="block text-xs font-medium text-neutral-600 mb-1">75인치</span>
+                  <select name="qty_75" value={qty75} onChange={(e) => setQty75(Number(e.target.value))} className="w-full px-3 py-2 rounded-lg border border-neutral-200 bg-white text-sm">
+                    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => <option key={n} value={n}>{n}대</option>)}
+                  </select>
+                </div>
+                <div className="bg-white rounded-xl p-3 border border-neutral-200">
+                  <span className="block text-xs font-medium text-neutral-600 mb-1">86인치</span>
+                  <select name="qty_86" value={qty86} onChange={(e) => setQty86(Number(e.target.value))} className="w-full px-3 py-2 rounded-lg border border-neutral-200 bg-white text-sm">
+                    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => <option key={n} value={n}>{n}대</option>)}
+                  </select>
+                </div>
+              </div>
+              <input type="text" name="qty_etc" maxLength={200} placeholder="그외 (직접 입력)" className="w-full px-4 py-2 rounded-xl border border-neutral-200 bg-white text-sm" />
             </div>
-            <div className="flex items-start gap-3"><input type="checkbox" id="privacy-agree" required className="mt-1" /><label htmlFor="privacy-agree" className="text-xs text-neutral-500">개인정보 수집 동의 (필수)</label></div>
+
+            <div>
+              <label className="block text-sm font-bold mb-2">7. 설치 방법 *</label>
+              <p className="text-xs text-neutral-500 mb-2">*벽부착 시 벽상태 확인해 주셔야 됩니다. 벽상태에 따라 설치 불가할 수 있습니다.</p>
+              <div className="space-y-2">
+                {mountOptions.map((opt) => (
+                  <label key={opt.value} className="flex items-center gap-2 cursor-pointer">
+                    <input type="radio" name="mount_type" value={opt.value} checked={mountType === opt.value} onChange={() => setMountType(opt.value)} className="text-accent" />
+                    <span className="text-sm">{opt.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-bold mb-2">8. 엘리베이터 *</label>
+              <div className="space-y-2">
+                {elevatorOptions.map((opt) => (
+                  <label key={opt.value} className="flex items-center gap-2 cursor-pointer">
+                    <input type="radio" name="elevator" value={opt.value} checked={elevator === opt.value} onChange={() => setElevator(opt.value)} className="text-accent" />
+                    <span className="text-sm">{opt.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-bold mb-2">9. 결제 방식 *</label>
+              <p className="text-xs text-neutral-500 mb-2">성의 있게 작성해 주시면 당첨 확률은 UP! 됩니다.</p>
+              <div className="space-y-2">
+                {paymentOptions.map((opt) => (
+                  <label key={opt.value} className="flex items-center gap-2 cursor-pointer">
+                    <input type="radio" name="payment" value={opt.value} checked={payment === opt.value} onChange={() => setPayment(opt.value)} className="text-accent" />
+                    <span className="text-sm">{opt.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-4 border border-neutral-200">
+              <label className="block text-sm font-bold mb-2">10. 개인정보 제3자 제공 동의 *</label>
+              <div className="text-xs text-neutral-600 space-y-1 mb-3">
+                <p><strong>제공받는 자:</strong> (주)넥소</p>
+                <p><strong>이용 목적:</strong> 마케팅 및 구매안내</p>
+                <p><strong>제공 항목:</strong> 이름, 연락처, 상호명, 주소</p>
+                <p><strong>보유 및 이용기간:</strong> 접수 후 2년</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <input type="checkbox" id="privacy-agree" required className="mt-1" />
+                <label htmlFor="privacy-agree" className="text-xs text-neutral-500">위 내용을 확인했으며, 개인정보 제3자 제공에 동의합니다. (필수)</label>
+              </div>
+            </div>
+
             <button type="submit" className="w-full bg-accent text-white font-bold py-4 rounded-xl hover:bg-accent/90">무료 상담 및 견적 신청</button>
           </form>
         </div>
