@@ -48,6 +48,7 @@ const App = () => {
   const [qty75, setQty75] = useState(0);
   const [qty86, setQty86] = useState(0);
   const [mountType, setMountType] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [elevator, setElevator] = useState('');
   const [payment, setPayment] = useState('');
   const [callTimeSlots, setCallTimeSlots] = useState([]);
@@ -131,8 +132,14 @@ const App = () => {
 
   const handleOrderSubmit = async (e) => {
     e.preventDefault();
+    
+    // 중복 제출 방지
+    if (isSubmitting) return;
+    
     const agree = document.getElementById('privacy-agree');
     if (!agree?.checked) { alert('개인정보 제3자 제공에 동의해주세요.'); return; }
+    
+    setIsSubmitting(true);
     const form = e.target;
     const formData = new FormData(form);
 
@@ -143,10 +150,10 @@ const App = () => {
     const address = (formData.get('address') || '').trim();
     const qtyEtc = (formData.get('qty_etc') || '').trim();
 
-    if (!customerName) { alert('성함을 입력해주세요.'); return; }
-    if (!phoneNumber) { alert('연락처를 입력해주세요.'); return; }
-    if (!orgName) { alert('공부방/학원 상호명을 입력해주세요.'); return; }
-    if (!address) { alert('설치할 주소를 입력해주세요.'); return; }
+    if (!customerName) { alert('성함을 입력해주세요.'); setIsSubmitting(false); return; }
+    if (!phoneNumber) { alert('연락처를 입력해주세요.'); setIsSubmitting(false); return; }
+    if (!orgName) { alert('공부방/학원 상호명을 입력해주세요.'); setIsSubmitting(false); return; }
+    if (!address) { alert('설치할 주소를 입력해주세요.'); setIsSubmitting(false); return; }
 
     const orderParts = [];
     if (qty65 > 0) orderParts.push(`65인치 ${qty65}대`);
@@ -154,10 +161,10 @@ const App = () => {
     if (qty86 > 0) orderParts.push(`86인치 ${qty86}대`);
     if (qtyEtc) orderParts.push(`그외 ${qtyEtc}`);
 
-    if (orderParts.length === 0) { alert('전자칠판 주문 수량을 선택해주세요.'); return; }
-    if (!mountType) { alert('설치 방법을 선택해주세요.'); return; }
-    if (!elevator) { alert('엘리베이터 여부를 선택해주세요.'); return; }
-    if (!payment) { alert('결제 방식을 선택해주세요.'); return; }
+    if (orderParts.length === 0) { alert('전자칠판 주문 수량을 선택해주세요.'); setIsSubmitting(false); return; }
+    if (!mountType) { alert('설치 방법을 선택해주세요.'); setIsSubmitting(false); return; }
+    if (!elevator) { alert('엘리베이터 여부를 선택해주세요.'); setIsSubmitting(false); return; }
+    if (!payment) { alert('결제 방식을 선택해주세요.'); setIsSubmitting(false); return; }
 
     const orderSummary = orderParts.join(', ');
 
@@ -182,6 +189,7 @@ const App = () => {
       setQty65(0); setQty75(0); setQty86(0);
       setMountType(''); setElevator(''); setPayment('');
       setCallTimeSlots([]);
+      setIsSubmitting(false);
       return;
     }
 
@@ -197,6 +205,8 @@ const App = () => {
       setCallTimeSlots([]);
     } catch (err) {
       alert(err.message || '오류가 발생했습니다. 다시 시도해주세요.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -696,7 +706,17 @@ const App = () => {
               </div>
             </div>
 
-            <button type="submit" className="w-full bg-accent text-white font-bold py-4 rounded-xl hover:bg-accent/90">무료 상담 및 견적 신청</button>
+            <button 
+              type="submit" 
+              disabled={isSubmitting}
+              className={`w-full bg-accent text-white font-bold py-4 rounded-xl transition-all ${
+                isSubmitting 
+                  ? 'opacity-60 cursor-not-allowed' 
+                  : 'hover:bg-accent/90'
+              }`}
+            >
+              {isSubmitting ? '전송 중...' : '무료 상담 및 견적 신청'}
+            </button>
           </form>
         </div>
       </section>
