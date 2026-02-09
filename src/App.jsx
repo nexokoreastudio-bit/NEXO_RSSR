@@ -50,7 +50,15 @@ const App = () => {
   const [mountType, setMountType] = useState('');
   const [elevator, setElevator] = useState('');
   const [payment, setPayment] = useState('');
+  const [callTimeSlots, setCallTimeSlots] = useState([]);
   const orderFormRef = useRef(null);
+
+  const callTimeOptions = [
+    { value: 'morning', label: '오전 (9시~12시)' },
+    { value: 'afternoon', label: '오후 (12시~6시)' },
+    { value: 'evening', label: '저녁 (6시~9시)' },
+    { value: 'flexible', label: '시간 협의 가능' },
+  ];
 
   // 가치 중심 카피 (짧고 강력)
   const valueProps = [
@@ -78,13 +86,13 @@ const App = () => {
     { title: '종이처럼 쓰는 터치', desc: '무반사·ZERO-GAP. 눈 피로 ↓, 필기감 ↑' },
     { title: '수업 끝날 때까지 지원', desc: '저녁 8시 40분에도 전화 받습니다' },
     { title: '하나로 끝나는 All-in-One', desc: '4K·스피커·카메라·판서 소프트웨어 통합' },
-    { title: '평생 무료 소프트웨어', desc: '타사 연 150만원 상당, 넥소는 무료' },
+    { title: '평생 무료 소프트웨어', desc: '구독료 없이 모든 기능 무제한 사용' },
   ];
 
   const sizeOptions = [
-    { size: '65', area: '8~10평 미만', students: '5~8명 내외', dimensions: '가로 1470.9mm × 세로 930mm' },
-    { size: '75', area: '10~15평', students: '10~15명', dimensions: '가로 1692.1mm × 세로 1050mm' },
-    { size: '86', area: '15평 이상', students: '20명 이상', dimensions: '가로 1943.4mm × 세로 1193mm' },
+    { size: '65', area: '8~10평 미만', students: '5~8명 내외', dimensions: '가로 1470.9mm × 세로 930mm', imageUrl: '/size-65-install.jpg', videoUrl: '/size-65-video.mp4' },
+    { size: '75', area: '10~15평', students: '10~15명', dimensions: '가로 1692.1mm × 세로 1050mm', imageUrl: '/size-75-install.jpg', videoUrl: '/size-75-video.mp4' },
+    { size: '86', area: '15평 이상', students: '20명 이상', dimensions: '가로 1943.4mm × 세로 1193mm', imageUrl: '/size-86-install.jpg', videoUrl: '/size-86-video.mp4' },
   ];
 
   const youtubeVideos = [
@@ -163,6 +171,7 @@ const App = () => {
       mount_type: mountOptions.find(o => o.value === mountType)?.label || mountType,
       elevator: elevatorOptions.find(o => o.value === elevator)?.label || elevator,
       payment: paymentOptions.find(o => o.value === payment)?.label || payment,
+      call_time_slots: callTimeSlots.length > 0 ? callTimeSlots.map(s => callTimeOptions.find(o => o.value === s)?.label).join(', ') : '',
     };
 
     const isLocalhost = typeof window !== 'undefined' && ['localhost', '127.0.0.1'].includes(window.location.hostname);
@@ -172,6 +181,7 @@ const App = () => {
       form.reset();
       setQty65(0); setQty75(0); setQty86(0);
       setMountType(''); setElevator(''); setPayment('');
+      setCallTimeSlots([]);
       return;
     }
 
@@ -184,6 +194,7 @@ const App = () => {
       form.reset();
       setQty65(0); setQty75(0); setQty86(0);
       setMountType(''); setElevator(''); setPayment('');
+      setCallTimeSlots([]);
     } catch (err) {
       alert(err.message || '오류가 발생했습니다. 다시 시도해주세요.');
     }
@@ -234,11 +245,11 @@ const App = () => {
         </div>
       </section>
 
-      {/* Software is FREE - 강력한 카피 */}
+      {/* NEXO All-in-One Smart Solution */}
       <section className="py-10 md:py-14 bg-accent">
         <div className="max-w-4xl mx-auto px-4 text-center text-white">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-3">Software is FREE</h2>
-          <p className="text-base md:text-lg opacity-95 font-semibold">타사 연 150만원 상당, <strong>넥소는 평생 무료</strong></p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-3">NEXO All-in-One Smart Solution</h2>
+          <p className="text-base md:text-lg opacity-95 font-semibold">구독료 없이 <strong>평생 무료 업데이트</strong> · 모든 기능 무제한 사용</p>
         </div>
       </section>
 
@@ -251,17 +262,33 @@ const App = () => {
           </div>
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="bg-white rounded-2xl overflow-hidden border border-neutral-100 shadow-sm">
-              <img src="/Eshare_Pro.png" alt="Eshare" className="w-full aspect-video object-cover" />
+              <div className="relative aspect-video bg-neutral-900">
+                <iframe 
+                  src="https://www.youtube.com/embed/hSFAHFgniVU?rel=0" 
+                  title="Eshare 3초 무선 미러링" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen 
+                  className="absolute inset-0 w-full h-full"
+                />
+              </div>
               <div className="p-6">
                 <h3 className="font-extrabold text-xl md:text-2xl text-neutral-900 mb-2">Eshare · 3초 연결</h3>
                 <p className="text-neutral-600 text-sm">9대 동시 화면 공유. Windows·Mac·iOS·Android.</p>
               </div>
             </div>
             <div className="bg-white rounded-2xl overflow-hidden border border-neutral-100 shadow-sm">
-              <img src="/nexo-problem-statement.png" alt="UMIND 판서" className="w-full aspect-video object-cover" />
+              <div className="relative aspect-video bg-neutral-900">
+                <iframe 
+                  src="https://www.youtube.com/embed/Ci1uy-5eEJg?rel=0" 
+                  title="UMIND 판서 소프트웨어" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen 
+                  className="absolute inset-0 w-full h-full"
+                />
+              </div>
               <div className="p-6">
                 <h3 className="font-extrabold text-xl md:text-2xl text-neutral-900 mb-2">UMIND · PDF 위에 판서</h3>
-                <p className="text-neutral-600 text-sm">2D·3D 그래프, 도형, 자, 각도기. 수학·과학 특화.</p>
+                <p className="text-neutral-600 text-sm">PDF 위에 판서, 녹화기능으로 수업자료까지</p>
               </div>
             </div>
           </div>
@@ -356,10 +383,40 @@ const App = () => {
             <h2 className="text-3xl md:text-4xl font-extrabold text-neutral-900">NX 시리즈 스펙</h2>
             <p className="text-accent font-extrabold text-base mt-4 bg-accent/5 border border-accent/20 rounded-lg px-5 py-3 inline-block">"타협하지 않는 퍼포먼스" Android 13→15, Octa-Core, RAM 16GB / ROM 256GB</p>
           </div>
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
             {['무반사 9H 강화유리', 'ZERO-GAP Bonding', '50포인트 터치', '48MP AI 카메라', '8 어레이 마이크', 'Wi-Fi 6 · Type-C'].map((s, i) => (
               <div key={i} className="flex items-center gap-2 bg-surfaceAlt rounded-xl px-4 py-3"><CheckCircle className="w-4 h-4 text-accent shrink-0" /><span className="text-sm font-medium text-neutral-800">{s}</span></div>
             ))}
+          </div>
+          <div className="mb-6 rounded-2xl overflow-hidden border border-neutral-200 shadow-sm">
+            <img src="/nexo-clear-screen.png" alt="빛 반사 없는 선명한 화면 - NEXO 전자칠판" className="w-full h-auto object-cover" />
+          </div>
+          <div className="bg-accent/5 border border-accent/20 rounded-xl p-6">
+            <h3 className="font-extrabold text-lg text-neutral-900 mb-3 flex items-center gap-2">
+              <span className="text-accent">✨</span> 빛 반사 없는 선명한 화면
+            </h3>
+            <p className="text-neutral-700 text-sm leading-relaxed mb-3">
+              형광등 아래서도 화면이 번들거리지 않습니다. <strong>무반사(최상위등급) 기술</strong>과 <strong>9H 경도 강화유리</strong>로 눈의 피로를 최소화하고, 
+              선명한 화면으로 학생들의 집중도를 높입니다. 특히 창문이 많은 교실이나 밝은 조명 환경에서도 화면이 선명하게 보입니다.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-3 mt-4">
+              <div className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                <span className="text-xs text-neutral-600">형광등 반사 없음 - 눈 피로 감소</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                <span className="text-xs text-neutral-600">창문 옆 설치 시에도 선명</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                <span className="text-xs text-neutral-600">9H 강화유리 - 스크래치 방지</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                <span className="text-xs text-neutral-600">ZERO-GAP - 종이 같은 필기감</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -372,12 +429,42 @@ const App = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {sizeOptions.map((opt, i) => (
-              <div key={i} className="rounded-2xl p-6 text-center bg-white border-2 border-accent">
-                <div className="font-black text-4xl md:text-5xl text-neutral-900 mb-3">{opt.size}<span className="text-lg font-normal text-neutral-500">인치</span></div>
-                <div className="text-sm text-neutral-600 space-y-1 text-left bg-surfaceAlt rounded-xl px-4 py-3">
-                  <p>추천 평수: {opt.area}</p>
-                  <p>수강 인원: {opt.students}</p>
-                  <p className="text-xs">사이즈: {opt.dimensions}</p>
+              <div key={i} className="rounded-2xl overflow-hidden bg-white border-2 border-accent">
+                {opt.videoUrl ? (
+                  <div className="bg-neutral-900 overflow-hidden relative">
+                    <video 
+                      src={opt.videoUrl}
+                      controls
+                      className="w-full h-auto max-h-[500px] object-contain"
+                      playsInline
+                    >
+                      브라우저가 비디오 태그를 지원하지 않습니다.
+                    </video>
+                  </div>
+                ) : (
+                  <div className="aspect-video bg-neutral-100 overflow-hidden relative">
+                    {opt.imageUrl ? (
+                      <img 
+                        src={opt.imageUrl} 
+                        alt={`${opt.size}인치 설치 예시`}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.parentElement.innerHTML = '<div class="w-full h-full flex items-center justify-center text-neutral-400 text-sm">설치 예시 사진</div>';
+                        }}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-neutral-400 text-sm">설치 예시</div>
+                    )}
+                  </div>
+                )}
+                <div className="p-6 text-center">
+                  <div className="font-black text-4xl md:text-5xl text-neutral-900 mb-3">{opt.size}<span className="text-lg font-normal text-neutral-500">인치</span></div>
+                  <div className="text-sm text-neutral-600 space-y-1 text-left bg-surfaceAlt rounded-xl px-4 py-3">
+                    <p>추천 평수: {opt.area}</p>
+                    <p>수강 인원: {opt.students}</p>
+                    <p className="text-xs">사이즈: {opt.dimensions}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -569,8 +656,34 @@ const App = () => {
               </div>
             </div>
 
+            <div>
+              <label className="block text-sm font-bold mb-2">10. 통화 가능한 시간대 (선택)</label>
+              <p className="text-xs text-neutral-500 mb-2">원하시는 시간대를 선택해주시면 해당 시간에 연락드립니다.</p>
+              <div className="grid sm:grid-cols-2 gap-2">
+                {callTimeOptions.map((opt) => (
+                  <label key={opt.value} className="flex items-center gap-2 cursor-pointer bg-white rounded-lg px-4 py-2.5 border border-neutral-200 hover:border-accent/50 transition-colors">
+                    <input 
+                      type="checkbox" 
+                      name="call_time" 
+                      value={opt.value}
+                      checked={callTimeSlots.includes(opt.value)}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setCallTimeSlots([...callTimeSlots, opt.value]);
+                        } else {
+                          setCallTimeSlots(callTimeSlots.filter(t => t !== opt.value));
+                        }
+                      }}
+                      className="text-accent rounded"
+                    />
+                    <span className="text-sm">{opt.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
             <div className="bg-white rounded-xl p-4 border border-neutral-200">
-              <label className="block text-sm font-bold mb-2">10. 개인정보 제3자 제공 동의 *</label>
+              <label className="block text-sm font-bold mb-2">11. 개인정보 제3자 제공 동의 *</label>
               <div className="text-xs text-neutral-600 space-y-1 mb-3">
                 <p><strong>제공받는 자:</strong> (주)넥소</p>
                 <p><strong>이용 목적:</strong> 마케팅 및 구매안내</p>

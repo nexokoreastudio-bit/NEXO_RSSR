@@ -45,6 +45,7 @@ exports.handler = async (event, context) => {
       mount_type,
       elevator,
       payment,
+      call_time_slots,
     } = body;
 
     const auth = new google.auth.GoogleAuth({
@@ -58,7 +59,7 @@ exports.handler = async (event, context) => {
     const sheets = google.sheets({ version: 'v4', auth });
     const meta = await sheets.spreadsheets.get({ spreadsheetId: GOOGLE_SHEET_ID });
     const firstSheetTitle = meta.data.sheets?.[0]?.properties?.title || 'Sheet1';
-    const range = `'${firstSheetTitle}'!A:K`;
+    const range = `'${firstSheetTitle}'!A:L`;
 
     const timestamp = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
 
@@ -73,6 +74,7 @@ exports.handler = async (event, context) => {
       mount_type || '',
       elevator || '',
       payment || '',
+      call_time_slots || '',
       '성공운',
     ];
 
