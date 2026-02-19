@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>넥소 NX 시리즈 전자칠판 - 성공운 공동구매 상세페이지</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Pretendard', system-ui, sans-serif; }
+    .accent { color: #c8102e; }
+    .bg-accent { background-color: #c8102e; }
+    .border-accent { border-color: #c8102e; }
+    .text-accent { color: #c8102e; }
+    .bg-surface { background-color: #faf9f7; }
+    .bg-surfaceAlt { background-color: #f5f4f1; }
+    details summary { cursor: pointer; }
+    details summary::-webkit-details-marker { display: none; }
+  </style>
+</head>
+<body class="bg-surface text-neutral-800">
+  
+  <!-- Top Bar -->
+  <header class="fixed top-0 w-full bg-white/95 backdrop-blur z-50 border-b border-neutral-100">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
+      <span class="font-extrabold text-xl text-neutral-900">NEXO <span class="text-accent">X 성공운</span></span>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#value" class="text-neutral-600 hover:text-neutral-900 text-sm font-medium">가치</a>
+        <a href="#reviews" class="text-neutral-600 hover:text-neutral-900 text-sm font-medium">후기</a>
+        <a href="tel:032-569-5771" class="text-neutral-600 hover:text-accent text-sm flex items-center gap-1"><span class="text-accent font-bold">032.569.5771</span></a>
+      </nav>
+      <a href="#order" class="bg-accent text-white px-5 py-2 rounded-lg text-sm font-bold hover:opacity-90 whitespace-nowrap">견적 문의</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="pt-[3.5rem] pb-0 bg-surface">
+    <div class="max-w-6xl mx-auto px-4 md:px-6">
+      <img src="/hero-main.png" alt="NEXO 전자칠판 공동구매" class="w-full h-auto object-contain">
+    </div>
+  </section>
+
+  <!-- 핵심 가치 4카드 -->
+  <section id="value" class="py-16 md:py-20 bg-white scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-12">
+        <p class="text-accent font-extrabold text-lg tracking-widest uppercase mb-3">넥소가 주는 가치</p>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-neutral-900 leading-tight">전자칠판 하나로<br><span class="text-accent">수업이 바뀝니다</span></h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div class="bg-surfaceAlt rounded-2xl p-6 md:p-8 border border-neutral-100 hover:border-accent/30 hover:shadow-lg transition-all">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          </div>
+          <h3 class="font-extrabold text-xl md:text-2xl text-neutral-900 mb-2">수업이 바뀐다</h3>
+          <p class="text-neutral-600 text-sm leading-relaxed">2D·3D 그래프, PDF 위 판서, 9대 동시 화면 공유</p>
+        </div>
+        <div class="bg-surfaceAlt rounded-2xl p-6 md:p-8 border border-neutral-100 hover:border-accent/30 hover:shadow-lg transition-all">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <h3 class="font-extrabold text-xl md:text-2xl text-neutral-900 mb-2">시간이 절약된다</h3>
+          <p class="text-neutral-600 text-sm leading-relaxed">케이블 3초 연결, 원터치 녹화, OTA 자동 업데이트</p>
+        </div>
+        <div class="bg-surfaceAlt rounded-2xl p-6 md:p-8 border border-neutral-100 hover:border-accent/30 hover:shadow-lg transition-all">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          </div>
+          <h3 class="font-extrabold text-xl md:text-2xl text-neutral-900 mb-2">학생이 참여한다</h3>
+          <p class="text-neutral-600 text-sm leading-relaxed">50포인트 터치, 폰으로 바로 공유, QR로 즉시 전달</p>
+        </div>
+        <div class="bg-surfaceAlt rounded-2xl p-6 md:p-8 border border-neutral-100 hover:border-accent/30 hover:shadow-lg transition-all">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          </div>
+          <h3 class="font-extrabold text-xl md:text-2xl text-neutral-900 mb-2">운영이 편해진다</h3>
+          <p class="text-neutral-600 text-sm leading-relaxed">저녁까지 A/S, 무상 1년, 원격 지원</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXO All-in-One Smart Solution -->
+  <section class="py-10 md:py-14 bg-accent">
+    <div class="max-w-4xl mx-auto px-4 text-center text-white">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-3">NEXO All-in-One Smart Solution</h2>
+      <p class="text-base md:text-lg opacity-95 font-semibold">구독료 없이 <strong>평생 무료 업데이트</strong> · 모든 기능 무제한 사용</p>
+    </div>
+  </section>
+
+  <!-- 넥소 한눈에 - 영상 제외, 이미지만 -->
+  <section id="software" class="py-16 md:py-20 bg-surface scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-12">
+        <p class="text-neutral-500 font-extrabold text-base uppercase tracking-wider mb-3">한눈에 보는 넥소</p>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-neutral-900">필요한 건 다 있습니다</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl p-6 border border-neutral-100">
+          <img src="/nexo-classroom-real.png" alt="교실" class="w-full aspect-video object-cover rounded-xl mb-4">
+          <h4 class="font-extrabold text-lg md:text-xl text-neutral-900 mb-1">교실 수업</h4>
+          <p class="text-neutral-600 text-xs">자·도형·마인드맵·스티커 메모</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-neutral-100">
+          <img src="/Gukpul_img1.png" alt="국어" class="w-full aspect-video object-cover rounded-xl mb-4">
+          <h4 class="font-extrabold text-lg md:text-xl text-neutral-900 mb-1">국어 특화</h4>
+          <p class="text-neutral-600 text-xs">지문 분석·문단 구조·논리 도식화</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-neutral-100">
+          <img src="/math-3d-graph.png" alt="수학 3D" class="w-full aspect-video object-cover rounded-xl mb-4">
+          <h4 class="font-extrabold text-lg md:text-xl text-neutral-900 mb-1">수학 3D</h4>
+          <p class="text-neutral-600 text-xs">구방정식 1초에 시각화</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 오픈채팅 -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="bg-surfaceAlt rounded-2xl border border-neutral-100 overflow-hidden">
+        <div class="bg-neutral-800 text-white px-4 py-3 flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+          <span class="font-extrabold text-base md:text-lg">성공운 공구 오픈채팅</span>
+        </div>
+        <div class="p-4 space-y-3 min-h-[140px]">
+          <div class="flex gap-2"><div class="w-7 h-7 rounded-full bg-accent/20 shrink-0"></div><div class="bg-amber-50 text-sm px-3 py-2 rounded-xl max-w-[80%]">전자칠판 공구 가격이 부담되는데...</div></div>
+          <div class="flex gap-2 justify-end"><div class="bg-neutral-200 text-sm px-3 py-2 rounded-xl max-w-[80%]">성공운 회원 전용 공동구매로 진행 중이에요.</div><div class="w-7 h-7 rounded-full bg-accent/30 shrink-0"></div></div>
+          <div class="flex gap-2"><div class="w-7 h-7 rounded-full bg-accent/20 shrink-0"></div><div class="bg-amber-50 text-sm px-3 py-2 rounded-xl max-w-[80%]">가성비 좋은 모델 알려주세요!</div></div>
+          <div class="flex gap-2 justify-end"><div class="bg-neutral-200 text-sm px-3 py-2 rounded-xl max-w-[80%]">NX 시리즈가 딱이에요. UMIND 판서 프로그램이 기본 제공됩니다.</div><div class="w-7 h-7 rounded-full bg-accent/30 shrink-0"></div></div>
+          <div class="flex justify-center"><span class="bg-neutral-200 text-neutral-600 text-sm px-3 py-1 rounded-full">성공운 원장님이 입장하셨습니다.</span></div>
+        </div>
+        <div class="bg-accent text-white px-6 py-4 flex items-center justify-between">
+          <span class="font-extrabold text-base md:text-lg">NEXO X 성공운 한정 공동구매</span>
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 왜 넥소인가 -->
+  <section class="py-16 md:py-20 bg-neutral-900 text-white">
+    <div class="max-w-6xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-12">
+        <p class="text-accent font-extrabold text-base tracking-widest uppercase mb-3">WHY NEXO</p>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold">왜 넥소인가요?</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-neutral-800/80 rounded-2xl p-6 border border-neutral-700">
+          <h3 class="font-extrabold text-xl md:text-2xl mb-2">종이처럼 쓰는 터치</h3>
+          <p class="text-neutral-400 text-sm">무반사·ZERO-GAP. 눈 피로 ↓, 필기감 ↑</p>
+        </div>
+        <div class="bg-neutral-800/80 rounded-2xl p-6 border border-neutral-700">
+          <h3 class="font-extrabold text-xl md:text-2xl mb-2">수업 끝날 때까지 지원</h3>
+          <p class="text-neutral-400 text-sm">저녁 8시 40분에도 전화 받습니다</p>
+        </div>
+        <div class="bg-neutral-800/80 rounded-2xl p-6 border border-neutral-700">
+          <h3 class="font-extrabold text-xl md:text-2xl mb-2">하나로 끝나는 All-in-One</h3>
+          <p class="text-neutral-400 text-sm">4K·스피커·카메라·판서 소프트웨어 통합</p>
+        </div>
+        <div class="bg-neutral-800/80 rounded-2xl p-6 border border-neutral-700">
+          <h3 class="font-extrabold text-xl md:text-2xl mb-2">평생 무료 소프트웨어</h3>
+          <p class="text-neutral-400 text-sm">구독료 없이 모든 기능 무제한 사용</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 스펙 -->
+  <section id="specs" class="py-16 md:py-20 bg-white scroll-mt-20">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900">NX 시리즈 스펙</h2>
+        <p class="text-accent font-extrabold text-base mt-4 bg-accent/5 border border-accent/20 rounded-lg px-5 py-3 inline-block">"타협하지 않는 퍼포먼스" Android 13→15, Octa-Core, RAM 16GB / ROM 256GB</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4 mb-6">
+        <div class="flex items-center gap-2 bg-surfaceAlt rounded-xl px-4 py-3"><span class="text-accent font-bold">✓</span><span class="text-sm font-medium text-neutral-800">무반사 9H 강화유리</span></div>
+        <div class="flex items-center gap-2 bg-surfaceAlt rounded-xl px-4 py-3"><span class="text-accent font-bold">✓</span><span class="text-sm font-medium text-neutral-800">ZERO-GAP Bonding</span></div>
+        <div class="flex items-center gap-2 bg-surfaceAlt rounded-xl px-4 py-3"><span class="text-accent font-bold">✓</span><span class="text-sm font-medium text-neutral-800">50포인트 터치</span></div>
+        <div class="flex items-center gap-2 bg-surfaceAlt rounded-xl px-4 py-3"><span class="text-accent font-bold">✓</span><span class="text-sm font-medium text-neutral-800">48MP AI 카메라</span></div>
+        <div class="flex items-center gap-2 bg-surfaceAlt rounded-xl px-4 py-3"><span class="text-accent font-bold">✓</span><span class="text-sm font-medium text-neutral-800">8 어레이 마이크</span></div>
+        <div class="flex items-center gap-2 bg-surfaceAlt rounded-xl px-4 py-3"><span class="text-accent font-bold">✓</span><span class="text-sm font-medium text-neutral-800">Wi-Fi 6 · Type-C</span></div>
+      </div>
+      <div class="mb-6 rounded-2xl overflow-hidden border border-neutral-200 shadow-sm">
+        <img src="/nexo-clear-screen.png" alt="빛 반사 없는 선명한 화면 - NEXO 전자칠판" class="w-full h-auto object-cover">
+      </div>
+      <div class="bg-accent/5 border border-accent/20 rounded-xl p-6">
+        <h3 class="font-extrabold text-lg text-neutral-900 mb-3 flex items-center gap-2">
+          <span class="text-accent">✨</span> 빛 반사 없는 선명한 화면
+        </h3>
+        <p class="text-neutral-700 text-sm leading-relaxed mb-3">
+          형광등 아래서도 화면이 번들거리지 않습니다. <strong>무반사(최상위등급) 기술</strong>과 <strong>9H 경도 강화유리</strong>로 눈의 피로를 최소화하고, 
+          선명한 화면으로 학생들의 집중도를 높입니다. 특히 창문이 많은 교실이나 밝은 조명 환경에서도 화면이 선명하게 보입니다.
+        </p>
+        <div class="grid sm:grid-cols-2 gap-3 mt-4">
+          <div class="flex items-start gap-2">
+            <span class="text-accent font-bold">✓</span>
+            <span class="text-xs text-neutral-600">형광등 반사 없음 - 눈 피로 감소</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-accent font-bold">✓</span>
+            <span class="text-xs text-neutral-600">창문 옆 설치 시에도 선명</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-accent font-bold">✓</span>
+            <span class="text-xs text-neutral-600">9H 강화유리 - 스크래치 방지</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-accent font-bold">✓</span>
+            <span class="text-xs text-neutral-600">ZERO-GAP - 종이 같은 필기감</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 사이즈 가이드 -->
+  <section id="size-guide" class="py-16 md:py-20 bg-surface scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-neutral-900">우리 학원엔 몇 인치?</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="rounded-2xl overflow-hidden bg-white border-2 border-accent">
+          <div class="bg-neutral-900 overflow-hidden relative">
+            <video src="/size-65-video.mp4" controls class="w-full h-auto max-h-[500px] object-contain" playsinline>
+              브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+          </div>
+          <div class="p-6 text-center">
+            <div class="font-black text-4xl md:text-5xl text-neutral-900 mb-3">65<span class="text-lg font-normal text-neutral-500">인치</span></div>
+            <div class="text-sm text-neutral-600 space-y-1 text-left bg-surfaceAlt rounded-xl px-4 py-3">
+              <p>추천 평수: 8~10평 미만</p>
+              <p>수강 인원: 5~8명 내외</p>
+              <p class="text-xs">사이즈: 가로 1470.9mm × 세로 930mm</p>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden bg-white border-2 border-accent">
+          <div class="bg-neutral-900 overflow-hidden relative">
+            <video src="/size-75-video.mp4" controls class="w-full h-auto max-h-[500px] object-contain" playsinline>
+              브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+          </div>
+          <div class="p-6 text-center">
+            <div class="font-black text-4xl md:text-5xl text-neutral-900 mb-3">75<span class="text-lg font-normal text-neutral-500">인치</span></div>
+            <div class="text-sm text-neutral-600 space-y-1 text-left bg-surfaceAlt rounded-xl px-4 py-3">
+              <p>추천 평수: 10~15평</p>
+              <p>수강 인원: 10~15명</p>
+              <p class="text-xs">사이즈: 가로 1692.1mm × 세로 1050mm</p>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden bg-white border-2 border-accent">
+          <div class="bg-neutral-900 overflow-hidden relative">
+            <video src="/size-86-video.mp4" controls class="w-full h-auto max-h-[500px] object-contain" playsinline>
+              브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+          </div>
+          <div class="p-6 text-center">
+            <div class="font-black text-4xl md:text-5xl text-neutral-900 mb-3">86<span class="text-lg font-normal text-neutral-500">인치</span></div>
+            <div class="text-sm text-neutral-600 space-y-1 text-left bg-surfaceAlt rounded-xl px-4 py-3">
+              <p>추천 평수: 15평 이상</p>
+              <p>수강 인원: 20명 이상</p>
+              <p class="text-xs">사이즈: 가로 1943.4mm × 세로 1193mm</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 베스트 셀러 -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4 md:px-6">
+      <div class="flex flex-col md:flex-row items-center gap-8 bg-surfaceAlt rounded-2xl p-8 border border-neutral-100">
+        <div class="flex-1 text-center md:text-left">
+          <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-lg">베스트 셀러</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 mt-4 mb-2">NX 시리즈</h2>
+          <p class="text-neutral-600 text-sm mb-6">원장님들이 가장 많이 선택한 모델. 최다 판매·안정성 갑</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-flex items-center gap-1 bg-white border border-neutral-200 rounded-lg px-3 py-1.5 text-sm font-medium"><span class="text-accent font-bold">✓</span>48MP 카메라·8 어레이 마이크</span>
+            <span class="inline-flex items-center gap-1 bg-white border border-neutral-200 rounded-lg px-3 py-1.5 text-sm font-medium"><span class="text-accent font-bold">✓</span>OTA 자동 업데이트</span>
+            <span class="inline-flex items-center gap-1 bg-white border border-neutral-200 rounded-lg px-3 py-1.5 text-sm font-medium"><span class="text-accent font-bold">✓</span>65/75/86인치</span>
+          </div>
+        </div>
+        <img src="/nexo-best-seller.png" alt="NX 시리즈" class="w-full max-w-sm rounded-xl object-cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- 서비스 -->
+  <section class="py-16 md:py-20 bg-surface">
+    <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-neutral-900 mb-3">"원장님의 수업 시간이 곧 저희 업무 시간"</h2>
+      <p class="text-neutral-600 mb-8 text-base font-semibold">저녁 수업 중 문제 생기면? 넥소는 전화 받습니다.</p>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl p-6 border border-neutral-100">
+          <svg class="w-8 h-8 text-accent mb-3 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          <h4 class="font-extrabold text-xl text-neutral-900 mb-2">실시간 원격 지원</h4>
+          <p class="text-neutral-600 text-sm">전문가가 즉시 접속해 해결해 드려요.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-neutral-100">
+          <svg class="w-8 h-8 text-accent mb-3 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+          <h4 class="font-extrabold text-xl text-neutral-900 mb-2">무상 1년</h4>
+          <p class="text-neutral-600 text-sm">1년 무상 A/S와 원격 지원으로 안심하고 운영하세요</p>
+        </div>
+      </div>
+      <p class="mt-6 text-neutral-600 text-sm"><a href="tel:032-569-5771" class="text-accent font-bold">032.569.5771</a></p>
+    </div>
+  </section>
+
+  <!-- 후기 -->
+  <section id="reviews" class="py-16 md:py-20 bg-white scroll-mt-20">
+    <div class="max-w-5xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-neutral-900">원장님들 후기</h2>
+        <p class="text-neutral-600 mt-2 text-base font-semibold">직전 공구 참여 원장님들의 생생한 이야기</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-surfaceAlt rounded-2xl p-6 border border-neutral-100">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold text-sm">김</div>
+            <div><span class="font-bold text-sm">김*현 원장님</span><span class="text-neutral-500 text-sm ml-2">24.03.12</span></div>
+          </div>
+          <div class="flex gap-0.5 mb-3">
+            <span class="text-amber-400">★★★★★</span>
+          </div>
+          <p class="text-neutral-600 text-sm leading-relaxed mb-4">UMIND 판서에 2D·3D 그래프, 각도기, 자가 다 들어있어서 수학 수업할 때 교구 준비가 필요 없어요. PDF 위에 바로 필기하는 것도 편하고, 원터치 수업 녹화로 결석생한테 보내기 딱 좋습니다.</p>
+          <div class="pt-4 border-t border-neutral-200"><p class="text-xs text-neutral-500 mb-1">판매자 답변</p><p class="text-neutral-600 text-sm">소중한 후기 감사합니다!</p></div>
+        </div>
+        <div class="bg-surfaceAlt rounded-2xl p-6 border border-neutral-100">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold text-sm">이</div>
+            <div><span class="font-bold text-sm">이*영 원장님</span><span class="text-neutral-500 text-sm ml-2">24.02.28</span></div>
+          </div>
+          <div class="flex gap-0.5 mb-3">
+            <span class="text-amber-400">★★★★★</span>
+          </div>
+          <p class="text-neutral-600 text-sm leading-relaxed mb-4">Eshare로 노트북·아이패드 무선 연결 3초 만에 되고, Quick Share로 학생 오답 사진도 칠판에 바로 띄워요. 48MP 카메라·8 어레이 마이크 내장이라 별도 장비 없이 화상·녹화 잘 됩니다.</p>
+          <div class="pt-4 border-t border-neutral-200"><p class="text-xs text-neutral-500 mb-1">판매자 답변</p><p class="text-neutral-600 text-sm">감사합니다!</p></div>
+        </div>
+        <div class="bg-surfaceAlt rounded-2xl p-6 border border-neutral-100">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold text-sm">박</div>
+            <div><span class="font-bold text-sm">박*수 원장님</span><span class="text-neutral-500 text-sm ml-2">24.02.28</span></div>
+          </div>
+          <div class="flex gap-0.5 mb-3">
+            <span class="text-amber-400">★★★★★</span>
+          </div>
+          <p class="text-neutral-600 text-sm leading-relaxed mb-4">무반사·ZERO-GAP 터치감이 종이에 쓰는 느낌이라 학생들 반응 좋아요. 수업 중 문제 생겨서 저녁에 전화했는데 바로 받아주시더라고요. 무상 1년에 원격 지원까지 안심입니다.</p>
+          <div class="pt-4 border-t border-neutral-200"><p class="text-xs text-neutral-500 mb-1">판매자 답변</p><p class="text-neutral-600 text-sm">앞으로도 만족스러운 사용 되시길!</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Price CTA -->
+  <section class="py-16 md:py-20 bg-neutral-900 text-white">
+    <div class="max-w-xl mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">성공운 회원 전용 파격 혜택</h2>
+      <p class="text-neutral-400 mb-8 text-base font-semibold">비교할 수 없는 단독 가격을 확인하세요</p>
+      <a href="#order" class="block w-full bg-accent text-white py-4 rounded-xl font-bold hover:bg-accent/90 transition-all">상담 신청하고 가격 확인</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-16 md:py-20 bg-surface scroll-mt-20">
+    <div class="max-w-2xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900">궁금한 점</h2>
+      </div>
+      <div class="space-y-3">
+        <details class="bg-white rounded-xl border border-neutral-100 overflow-hidden">
+          <summary class="w-full flex items-center justify-between p-4 text-left font-extrabold text-neutral-900 text-base pr-4 cursor-pointer">공부방에서 전자칠판 사용하기에 적합할까요?</summary>
+          <div class="px-4 pb-4 text-neutral-600 text-sm">네, 적합해요. 공간 규모와 수강 인원에 맞는 인치를 선택하시면 됩니다. 8~10평·5~8명은 65인치, 10~15평·10~15명은 75인치, 15평 이상·20명 이상은 86인치를 추천드려요.</div>
+        </details>
+        <details class="bg-white rounded-xl border border-neutral-100 overflow-hidden">
+          <summary class="w-full flex items-center justify-between p-4 text-left font-extrabold text-neutral-900 text-base pr-4 cursor-pointer">아파트 거실이나 작은 방에 설치해도 되나요?</summary>
+          <div class="px-4 pb-4 text-neutral-600 text-sm">네, 가능합니다. 벽걸이 또는 이동형 스탠드 선택이 가능해요.</div>
+        </details>
+        <details class="bg-white rounded-xl border border-neutral-100 overflow-hidden">
+          <summary class="w-full flex items-center justify-between p-4 text-left font-extrabold text-neutral-900 text-base pr-4 cursor-pointer">학생이 5~6명인데 괜찮을까요?</summary>
+          <div class="px-4 pb-4 text-neutral-600 text-sm">65인치면 5~8명 수강생까지 무리 없어요. 50포인트 멀티터치로 여러 명이 동시에 칠판에 필기할 수 있어서 소규모 공부방에 적합합니다.</div>
+        </details>
+        <details class="bg-white rounded-xl border border-neutral-100 overflow-hidden">
+          <summary class="w-full flex items-center justify-between p-4 text-left font-extrabold text-neutral-900 text-base pr-4 cursor-pointer">집에서 쓰는데 PC 없이 전자칠판만으로 수업 가능한가요?</summary>
+          <div class="px-4 pb-4 text-neutral-600 text-sm">네, 가능해요. UMIND 판서, Eshare로 폰·태블릿 연결, Quick Share로 교재 사진 공유까지 전자칠판 단독으로 수업하시는 원장님이 많습니다.</div>
+        </details>
+        <details class="bg-white rounded-xl border border-neutral-100 overflow-hidden">
+          <summary class="w-full flex items-center justify-between p-4 text-left font-extrabold text-neutral-900 text-base pr-4 cursor-pointer">소규모라 가격이 부담되는데 할부·할인 있나요?</summary>
+          <div class="px-4 pb-4 text-neutral-600 text-sm">성공운 회원 전용 특별 할인가가 적용되고, 할부도 가능해요. 상담 신청하시면 맞춤 견적·할부 조건 안내해 드립니다.</div>
+        </details>
+        <details class="bg-white rounded-xl border border-neutral-100 overflow-hidden">
+          <summary class="w-full flex items-center justify-between p-4 text-left font-extrabold text-neutral-900 text-base pr-4 cursor-pointer">폰으로 찍어서 칠판에 바로 띄울 수 있나요?</summary>
+          <div class="px-4 pb-4 text-neutral-600 text-sm">네, Quick Share로 가능합니다. 학생 오답을 스마트폰으로 찍어 전송하면 칠판에 즉시 띄워 풀이할 수 있어요.</div>
+        </details>
+        <details class="bg-white rounded-xl border border-neutral-100 overflow-hidden">
+          <summary class="w-full flex items-center justify-between p-4 text-left font-extrabold text-neutral-900 text-base pr-4 cursor-pointer">아이패드·맥북 연결 되나요?</summary>
+          <div class="px-4 pb-4 text-neutral-600 text-sm">네, Eshare로 Windows, Mac, Android, iOS 모두 지원됩니다.</div>
+        </details>
+        <details class="bg-white rounded-xl border border-neutral-100 overflow-hidden">
+          <summary class="w-full flex items-center justify-between p-4 text-left font-extrabold text-neutral-900 text-base pr-4 cursor-pointer">인터넷 창과 판서 동시에 띄울 수 있나요?</summary>
+          <div class="px-4 pb-4 text-neutral-600 text-sm">네, UMIND 분할 화면으로 한쪽엔 교재, 다른 쪽엔 칠판을 띄울 수 있어요.</div>
+        </details>
+        <details class="bg-white rounded-xl border border-neutral-100 overflow-hidden">
+          <summary class="w-full flex items-center justify-between p-4 text-left font-extrabold text-neutral-900 text-base pr-4 cursor-pointer">엘리베이터 없는데 추가 비용 있나요?</summary>
+          <div class="px-4 pb-4 text-neutral-600 text-sm">이번 공구 기간 무료입니다. 계단 운반비·사다리차도 본사 부담해요.</div>
+        </details>
+        <details class="bg-white rounded-xl border border-neutral-100 overflow-hidden">
+          <summary class="w-full flex items-center justify-between p-4 text-left font-extrabold text-neutral-900 text-base pr-4 cursor-pointer">기존 칠판 철거 해주시나요?</summary>
+          <div class="px-4 pb-4 text-neutral-600 text-sm">상황에 따라 협의 가능합니다. 상담 시 문의해주세요.</div>
+        </details>
+        <details class="bg-white rounded-xl border border-neutral-100 overflow-hidden">
+          <summary class="w-full flex items-center justify-between p-4 text-left font-extrabold text-neutral-900 text-base pr-4 cursor-pointer">지방 학원도 설치 되나요?</summary>
+          <div class="px-4 pb-4 text-neutral-600 text-sm">네, 전국 가능합니다. 수도권 무료, 수도권 외 11만원 추가예요.</div>
+        </details>
+        <details class="bg-white rounded-xl border border-neutral-100 overflow-hidden">
+          <summary class="w-full flex items-center justify-between p-4 text-left font-extrabold text-neutral-900 text-base pr-4 cursor-pointer">렌탈하면 신용등급 영향 있나요?</summary>
+          <div class="px-4 pb-4 text-neutral-600 text-sm">아니요. B2B 렌탈이라 개인 신용과 무관해요. (사업자등록증 필요)</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 주문 폼 -->
+  <section id="order" class="py-16 md:py-20 bg-white scroll-mt-20">
+    <div class="max-w-xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 mb-3">수업의 품격을 높여보세요</h2>
+        <p class="text-neutral-600 text-sm font-semibold">간단한 양식으로 견적 받기</p>
+      </div>
+      <form name="nexo-success-order" method="POST" action="#order" data-netlify="true" data-netlify-honeypot="bot-field" class="space-y-5 bg-surfaceAlt p-6 md:p-8 rounded-2xl border border-neutral-100">
+        <input type="hidden" name="form-name" value="nexo-success-order">
+        <input type="hidden" name="bot-field">
+
+        <div><label class="block text-sm font-bold mb-1">1. 네이버 아이디 / 카페 닉네임</label><input type="text" name="naver_id" maxlength="100" placeholder="참여자의 답변 입력란 (최대 100자)" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:ring-2 focus:ring-accent/30"></div>
+
+        <div><label class="block text-sm font-bold mb-1">2. 성함 *</label><input type="text" name="customer_name" required maxlength="100" placeholder="참여자의 답변 입력란 (최대 100자)" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:ring-2 focus:ring-accent/30"></div>
+
+        <div><label class="block text-sm font-bold mb-1">3. 연락처 (010-0000-0000) *</label><input type="tel" name="phone_number" required maxlength="100" placeholder="참여자의 답변 입력란 (최대 100자)" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:ring-2 focus:ring-accent/30"></div>
+
+        <div><label class="block text-sm font-bold mb-1">4. 공부방 / 학원 상호명 *</label><input type="text" name="org_name" required maxlength="2000" placeholder="참여자의 답변 입력란 (최대 2000자)" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:ring-2 focus:ring-accent/30"></div>
+
+        <div><label class="block text-sm font-bold mb-1">5. 설치할 주소 (정확한 주소) *</label><input type="text" name="address" required maxlength="100" placeholder="참여자의 답변 입력란 (최대 100자)" class="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:ring-2 focus:ring-accent/30"></div>
+
+        <div>
+          <label class="block text-sm font-bold mb-2">6. 전자칠판 주문 수량 *</label>
+          <p class="text-xs text-neutral-500 mb-2">인치별 대수를 선택하세요. (예: 65인치 1대, 75인치 2대)</p>
+          <div class="grid grid-cols-3 gap-3 mb-2">
+            <div class="bg-white rounded-xl p-3 border border-neutral-200">
+              <span class="block text-xs font-medium text-neutral-600 mb-1">65인치</span>
+              <select name="qty_65" class="w-full px-3 py-2 rounded-lg border border-neutral-200 bg-white text-sm">
+                <option value="0">0대</option>
+                <option value="1">1대</option>
+                <option value="2">2대</option>
+                <option value="3">3대</option>
+                <option value="4">4대</option>
+                <option value="5">5대</option>
+                <option value="6">6대</option>
+                <option value="7">7대</option>
+                <option value="8">8대</option>
+                <option value="9">9대</option>
+                <option value="10">10대</option>
+              </select>
+            </div>
+            <div class="bg-white rounded-xl p-3 border border-neutral-200">
+              <span class="block text-xs font-medium text-neutral-600 mb-1">75인치</span>
+              <select name="qty_75" class="w-full px-3 py-2 rounded-lg border border-neutral-200 bg-white text-sm">
+                <option value="0">0대</option>
+                <option value="1">1대</option>
+                <option value="2">2대</option>
+                <option value="3">3대</option>
+                <option value="4">4대</option>
+                <option value="5">5대</option>
+                <option value="6">6대</option>
+                <option value="7">7대</option>
+                <option value="8">8대</option>
+                <option value="9">9대</option>
+                <option value="10">10대</option>
+              </select>
+            </div>
+            <div class="bg-white rounded-xl p-3 border border-neutral-200">
+              <span class="block text-xs font-medium text-neutral-600 mb-1">86인치</span>
+              <select name="qty_86" class="w-full px-3 py-2 rounded-lg border border-neutral-200 bg-white text-sm">
+                <option value="0">0대</option>
+                <option value="1">1대</option>
+                <option value="2">2대</option>
+                <option value="3">3대</option>
+                <option value="4">4대</option>
+                <option value="5">5대</option>
+                <option value="6">6대</option>
+                <option value="7">7대</option>
+                <option value="8">8대</option>
+                <option value="9">9대</option>
+                <option value="10">10대</option>
+              </select>
+            </div>
+          </div>
+          <input type="text" name="qty_etc" maxlength="200" placeholder="그외 (직접 입력)" class="w-full px-4 py-2 rounded-xl border border-neutral-200 bg-white text-sm">
+        </div>
+
+        <!-- 가격표 -->
+        <div class="bg-white rounded-xl p-6 border-2 border-accent/30">
+          <h3 class="font-extrabold text-lg text-neutral-900 mb-4 text-center">💰 가격 안내</h3>
+          <div class="mb-4 rounded-lg overflow-hidden border border-neutral-200">
+            <img src="/price-table.png?v=20240219" alt="가격표" class="w-full h-auto">
+          </div>
+          <div class="bg-accent/5 rounded-lg p-4 border border-accent/20">
+            <p class="text-xs text-neutral-600 leading-relaxed">
+              <strong class="text-accent">※ 할부 금융 프로그램 진행시 추가 서류가 필요합니다.</strong><br>
+              ※ 할부 완납시 소유권이 구매자에게 이전 됩니다.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-bold mb-2">7. 설치 방법 *</label>
+          <p class="text-xs text-neutral-500 mb-2">*벽부착 시 벽상태 확인해 주셔야 됩니다. 벽상태에 따라 설치 불가할 수 있습니다.</p>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="mount_type" value="stand" required class="text-accent">
+              <span class="text-sm">이동형 스탠드</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="mount_type" value="wall_concrete" required class="text-accent">
+              <span class="text-sm">벽부착-콘크리트</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="mount_type" value="wall_gypsum" required class="text-accent">
+              <span class="text-sm">벽부착-합판/석고보드</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="mount_type" value="wall_etc" required class="text-accent">
+              <span class="text-sm">벽부착-기타</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-bold mb-2">8. 엘리베이터 *</label>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="elevator" value="yes" required class="text-accent">
+              <span class="text-sm">있음</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="elevator" value="ladder_ok" required class="text-accent">
+              <span class="text-sm">없음(사다리차 가능)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="elevator" value="ladder_no" required class="text-accent">
+              <span class="text-sm">없음(사다리차 불가능)</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-bold mb-2">9. 결제 방식 *</label>
+          <p class="text-xs text-neutral-500 mb-2">성의 있게 작성해 주시면 당첨 확률은 UP! 됩니다.</p>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="payment" value="transfer" required class="text-accent">
+              <span class="text-sm">계좌이체(세금계산서 or 현금영수증)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="payment" value="card" required class="text-accent">
+              <span class="text-sm">카드</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="payment" value="rental" required class="text-accent">
+              <span class="text-sm">렌탈(추가 서류 필요)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="payment" value="etc" required class="text-accent">
+              <span class="text-sm">기타</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-bold mb-2">10. 통화 가능한 시간대 (선택)</label>
+          <p class="text-xs text-neutral-500 mb-2">원하시는 시간대를 선택해주시면 해당 시간에 연락드립니다.</p>
+          <div class="grid sm:grid-cols-2 gap-2">
+            <label class="flex items-center gap-2 cursor-pointer bg-white rounded-lg px-4 py-2.5 border border-neutral-200 hover:border-accent/50 transition-colors">
+              <input type="checkbox" name="call_time" value="morning" class="text-accent rounded">
+              <span class="text-sm">오전 (9시~12시)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer bg-white rounded-lg px-4 py-2.5 border border-neutral-200 hover:border-accent/50 transition-colors">
+              <input type="checkbox" name="call_time" value="afternoon" class="text-accent rounded">
+              <span class="text-sm">오후 (12시~6시)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer bg-white rounded-lg px-4 py-2.5 border border-neutral-200 hover:border-accent/50 transition-colors">
+              <input type="checkbox" name="call_time" value="evening" class="text-accent rounded">
+              <span class="text-sm">저녁 (6시~9시)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer bg-white rounded-lg px-4 py-2.5 border border-neutral-200 hover:border-accent/50 transition-colors">
+              <input type="checkbox" name="call_time" value="flexible" class="text-accent rounded">
+              <span class="text-sm">시간 협의 가능</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 border border-neutral-200">
+          <label class="block text-sm font-bold mb-2">11. 개인정보 제3자 제공 동의 *</label>
+          <div class="text-xs text-neutral-600 space-y-1 mb-3">
+            <p><strong>제공받는 자:</strong> (주)넥소</p>
+            <p><strong>이용 목적:</strong> 마케팅 및 구매안내</p>
+            <p><strong>제공 항목:</strong> 이름, 연락처, 상호명, 주소</p>
+            <p><strong>보유 및 이용기간:</strong> 접수 후 2년</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <input type="checkbox" id="privacy-agree" required class="mt-1">
+            <label for="privacy-agree" class="text-xs text-neutral-500">위 내용을 확인했으며, 개인정보 제3자 제공에 동의합니다. (필수)</label>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-accent text-white font-bold py-4 rounded-xl transition-all hover:bg-accent/90">무료 상담 및 견적 신청</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 border-t border-neutral-200 bg-surface">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <span class="text-neutral-500 text-sm">NEXO x 성공운</span>
+      <div class="flex gap-6 text-neutral-500 text-xs">
+        <a href="https://nexokorea.co.kr" target="_blank" rel="noopener noreferrer" class="hover:text-accent">넥소코리아</a>
+        <a href="tel:032-569-5771" class="text-accent font-bold">032.569.5771</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

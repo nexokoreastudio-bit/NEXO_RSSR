@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   Monitor, 
   CheckCircle, 
@@ -14,7 +14,8 @@ import {
   MessageCircle,
   Clock,
   Target,
-  Shield
+  Shield,
+  X
 } from 'lucide-react';
 
 const scrollToOrder = () => {
@@ -52,7 +53,9 @@ const App = () => {
   const [elevator, setElevator] = useState('');
   const [payment, setPayment] = useState('');
   const [callTimeSlots, setCallTimeSlots] = useState([]);
+  const [isPriceModalOpen, setIsPriceModalOpen] = useState(false);
   const orderFormRef = useRef(null);
+  const priceTableRef = useRef(null);
 
   const callTimeOptions = [
     { value: 'morning', label: '오전 (9시~12시)' },
@@ -60,6 +63,58 @@ const App = () => {
     { value: 'evening', label: '저녁 (6시~9시)' },
     { value: 'flexible', label: '시간 협의 가능' },
   ];
+
+  // ESC 키로 모달 닫기 및 body 스크롤 제어
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isPriceModalOpen) {
+        setIsPriceModalOpen(false);
+      }
+    };
+    
+    if (isPriceModalOpen) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleEscape);
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    return () => {
+      window.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
+  }, [isPriceModalOpen]);
+
+  // 가격표 섹션 디버깅
+  useEffect(() => {
+    console.log('🔍 [가격표 디버깅] 컴포넌트 마운트됨');
+    console.log('🔍 [가격표 디버깅] priceTableRef.current:', priceTableRef.current);
+    
+    const checkPriceTable = () => {
+      const element = document.getElementById('price-table-section');
+      console.log('🔍 [가격표 디버깅] DOM에서 찾은 요소:', element);
+      if (element) {
+        console.log('🔍 [가격표 디버깅] 요소 스타일:', window.getComputedStyle(element));
+        console.log('🔍 [가격표 디버깅] 요소 display:', window.getComputedStyle(element).display);
+        console.log('🔍 [가격표 디버깅] 요소 visibility:', window.getComputedStyle(element).visibility);
+        console.log('🔍 [가격표 디버깅] 요소 opacity:', window.getComputedStyle(element).opacity);
+        console.log('🔍 [가격표 디버깅] 요소 높이:', element.offsetHeight);
+        console.log('🔍 [가격표 디버깅] 요소 너비:', element.offsetWidth);
+        console.log('🔍 [가격표 디버깅] 부모 요소:', element.parentElement);
+        console.log('🔍 [가격표 디버깅] 테이블 요소:', element.querySelector('table'));
+      } else {
+        console.error('❌ [가격표 디버깅] price-table-section 요소를 찾을 수 없습니다!');
+      }
+    };
+
+    // 즉시 확인
+    checkPriceTable();
+    
+    // DOM 업데이트 후 확인
+    setTimeout(checkPriceTable, 100);
+    setTimeout(checkPriceTable, 500);
+    setTimeout(checkPriceTable, 1000);
+  }, []);
 
   // 가치 중심 카피 (짧고 강력)
   const valueProps = [
@@ -304,7 +359,7 @@ const App = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white rounded-2xl p-6 border border-neutral-100">
-              <img src="/nexo-classroom.png" alt="교실" className="w-full aspect-video object-cover rounded-xl mb-4" />
+              <img src="/nexo-classroom-real.png" alt="교실" className="w-full aspect-video object-cover rounded-xl mb-4" />
               <h4 className="font-extrabold text-lg md:text-xl text-neutral-900 mb-1">교실 수업</h4>
               <p className="text-neutral-600 text-xs">자·도형·마인드맵·스티커 메모</p>
             </div>
@@ -603,6 +658,7 @@ const App = () => {
             <div><label className="block text-sm font-bold mb-1">5. 설치할 주소 (정확한 주소) *</label><input type="text" name="address" required maxLength={100} placeholder="참여자의 답변 입력란 (최대 100자)" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:ring-2 focus:ring-accent/30" /></div>
 
             <div>
+              {console.log('🔍 [가격표 디버깅] 6번 섹션 렌더링 중...')}
               <label className="block text-sm font-bold mb-2">6. 전자칠판 주문 수량 *</label>
               <p className="text-xs text-neutral-500 mb-2">인치별 대수를 선택하세요. (예: 65인치 1대, 75인치 2대)</p>
               <div className="grid grid-cols-3 gap-3 mb-2">
@@ -628,6 +684,121 @@ const App = () => {
               <input type="text" name="qty_etc" maxLength={200} placeholder="그외 (직접 입력)" className="w-full px-4 py-2 rounded-xl border border-neutral-200 bg-white text-sm" />
             </div>
 
+            {console.log('🔍 [가격표 디버깅] 6번 섹션 끝, 가격표 섹션 시작 전...')}
+            {/* 가격표 */}
+            <div 
+              ref={priceTableRef}
+              className="bg-white rounded-xl p-6 border-2 border-accent/30 mt-6 mb-4 shadow-lg cursor-pointer hover:shadow-xl transition-shadow" 
+              id="price-table-section"
+              onClick={() => setIsPriceModalOpen(true)}
+              style={{ 
+                display: 'block',
+                visibility: 'visible',
+                opacity: 1,
+                minHeight: '200px'
+              }}
+            >
+              {console.log('🔍 [가격표 디버깅] 가격표 JSX 렌더링 중...')}
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <h3 className="font-extrabold text-xl text-neutral-900 text-center">💰 가격 안내</h3>
+                <span className="text-xs text-neutral-500">(클릭하여 전체 보기)</span>
+              </div>
+              
+              {/* 가격표 테이블 */}
+              <div className="overflow-x-auto mb-4 -mx-2 px-2">
+                {console.log('🔍 [가격표 디버깅] 테이블 컨테이너 렌더링 중...')}
+                <div className="text-xs text-neutral-500 mb-2 text-center md:hidden">← 좌우로 스크롤하여 전체 내용을 확인하세요 →</div>
+                <table 
+                  className="w-full border-collapse bg-white text-base min-w-[800px]"
+                  style={{ whiteSpace: 'nowrap' }}
+                  onLoad={() => console.log('🔍 [가격표 디버깅] 테이블 로드 완료')}
+                >
+                  <thead>
+                    <tr className="bg-accent/10 border-b-2 border-accent/30">
+                      <th className="px-4 py-4 text-left font-bold text-neutral-900 border-r border-neutral-200 text-sm md:text-base">크기</th>
+                      <th colSpan="2" className="px-4 py-4 text-center font-bold text-neutral-900 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">현금/신용카드</th>
+                      <th colSpan="4" className="px-4 py-4 text-center font-bold text-neutral-900 bg-accent/5 text-sm md:text-base whitespace-nowrap">금융사 할부 월 납입액</th>
+                    </tr>
+                    <tr className="bg-accent/5 border-b border-neutral-200">
+                      <th className="px-4 py-3 text-left font-semibold text-neutral-700 border-r border-neutral-200 text-xs md:text-sm"></th>
+                      <th className="px-4 py-3 text-center font-semibold text-neutral-700 border-r border-neutral-200 text-xs md:text-sm"></th>
+                      <th className="px-4 py-3 text-center font-semibold text-neutral-700 border-r border-neutral-200 text-xs md:text-sm whitespace-nowrap">일시불</th>
+                      <th className="px-3 py-3 text-center font-semibold text-neutral-700 border-r border-neutral-200 text-xs md:text-sm whitespace-nowrap">24개월</th>
+                      <th className="px-3 py-3 text-center font-semibold text-neutral-700 border-r border-neutral-200 text-xs md:text-sm whitespace-nowrap">36개월</th>
+                      <th className="px-3 py-3 text-center font-semibold text-neutral-700 border-r border-neutral-200 text-xs md:text-sm whitespace-nowrap">48개월</th>
+                      <th className="px-3 py-3 text-center font-semibold text-neutral-700 text-xs md:text-sm whitespace-nowrap">60개월</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* 65인치 */}
+                    <tr className="border-b border-neutral-200 hover:bg-neutral-50 transition-colors">
+                      <td rowSpan="2" className="px-4 py-4 text-center font-bold text-accent border-r border-neutral-200 align-middle text-sm md:text-base">65인치</td>
+                      <td className="px-4 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">벽걸이</td>
+                      <td className="px-3 py-3 text-center font-semibold text-neutral-900 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">2,250,000원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">117,700원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">82,500원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">67,100원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 text-sm md:text-base whitespace-nowrap">58,300원</td>
+                    </tr>
+                    <tr className="border-b-2 border-neutral-300 hover:bg-neutral-50 transition-colors">
+                      <td className="px-4 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">이동형 스탠드</td>
+                      <td className="px-3 py-3 text-center font-semibold text-neutral-900 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">2,550,000원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">133,100원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">93,500원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">75,900원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 text-sm md:text-base whitespace-nowrap">66,000원</td>
+                    </tr>
+                    
+                    {/* 75인치 */}
+                    <tr className="border-b border-neutral-200 hover:bg-neutral-50 transition-colors">
+                      <td rowSpan="2" className="px-4 py-4 text-center font-bold text-accent border-r border-neutral-200 align-middle text-sm md:text-base">75인치</td>
+                      <td className="px-4 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">벽걸이</td>
+                      <td className="px-3 py-3 text-center font-semibold text-neutral-900 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">2,750,000원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">143,000원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">101,200원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">82,500원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 text-sm md:text-base whitespace-nowrap">71,500원</td>
+                    </tr>
+                    <tr className="border-b-2 border-neutral-300 hover:bg-neutral-50 transition-colors">
+                      <td className="px-4 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">이동형 스탠드</td>
+                      <td className="px-3 py-3 text-center font-semibold text-neutral-900 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">3,050,000원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">158,400원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">112,200원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">91,300원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 text-sm md:text-base whitespace-nowrap">79,200원</td>
+                    </tr>
+                    
+                    {/* 86인치 */}
+                    <tr className="border-b border-neutral-200 hover:bg-neutral-50 transition-colors">
+                      <td rowSpan="2" className="px-4 py-4 text-center font-bold text-accent border-r border-neutral-200 align-middle text-sm md:text-base">86인치</td>
+                      <td className="px-4 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">벽걸이</td>
+                      <td className="px-3 py-3 text-center font-semibold text-neutral-900 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">3,450,000원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">179,300원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">126,500원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">102,300원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 text-sm md:text-base whitespace-nowrap">89,100원</td>
+                    </tr>
+                    <tr className="border-b-2 border-neutral-300 hover:bg-neutral-50 transition-colors">
+                      <td className="px-4 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">이동형 스탠드</td>
+                      <td className="px-3 py-3 text-center font-semibold text-neutral-900 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">3,850,000원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">200,200원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">141,900원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">114,400원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 text-sm md:text-base whitespace-nowrap">99,000원</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div className="bg-accent/5 rounded-lg p-4 border border-accent/20">
+                <p className="text-xs text-neutral-600 leading-relaxed">
+                  <strong className="text-accent">※ 할부 금융 프로그램 진행시 추가 서류가 필요합니다.</strong><br />
+                  ※ 할부 완납시 소유권이 구매자에게 이전 됩니다.
+                </p>
+              </div>
+            </div>
+
+            {console.log('🔍 [가격표 디버깅] 가격표 섹션 끝, 7번 섹션 시작 전...')}
             <div>
               <label className="block text-sm font-bold mb-2">7. 설치 방법 *</label>
               <p className="text-xs text-neutral-500 mb-2">*벽부착 시 벽상태 확인해 주셔야 됩니다. 벽상태에 따라 설치 불가할 수 있습니다.</p>
@@ -722,6 +893,121 @@ const App = () => {
       </section>
 
       {/* Footer */}
+      {/* 가격표 모달 */}
+      {isPriceModalOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setIsPriceModalOpen(false);
+            }
+          }}
+        >
+          <div className="bg-white rounded-2xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-auto relative">
+            {/* 닫기 버튼 */}
+            <button
+              onClick={() => setIsPriceModalOpen(false)}
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-neutral-100 transition-colors z-10"
+              aria-label="닫기"
+            >
+              <X className="w-6 h-6 text-neutral-600" />
+            </button>
+
+            {/* 모달 내용 */}
+            <div className="p-6 md:p-8">
+              <h2 className="text-2xl md:text-3xl font-extrabold text-neutral-900 mb-6 text-center">💰 가격 안내</h2>
+              
+              {/* 가격표 테이블 */}
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse bg-white text-lg min-w-[900px]">
+                  <thead>
+                    <tr className="bg-accent/10 border-b-2 border-accent/30">
+                      <th className="px-6 py-5 text-left font-bold text-neutral-900 border-r border-neutral-200">크기</th>
+                      <th colSpan="2" className="px-6 py-5 text-center font-bold text-neutral-900 border-r border-neutral-200 whitespace-nowrap">현금/신용카드</th>
+                      <th colSpan="4" className="px-6 py-5 text-center font-bold text-neutral-900 bg-accent/5 whitespace-nowrap">금융사 할부 월 납입액</th>
+                    </tr>
+                    <tr className="bg-accent/5 border-b border-neutral-200">
+                      <th className="px-6 py-4 text-left font-semibold text-neutral-700 border-r border-neutral-200"></th>
+                      <th className="px-6 py-4 text-center font-semibold text-neutral-700 border-r border-neutral-200"></th>
+                      <th className="px-6 py-4 text-center font-semibold text-neutral-700 border-r border-neutral-200 whitespace-nowrap">일시불</th>
+                      <th className="px-4 py-4 text-center font-semibold text-neutral-700 border-r border-neutral-200 whitespace-nowrap">24개월</th>
+                      <th className="px-4 py-4 text-center font-semibold text-neutral-700 border-r border-neutral-200 whitespace-nowrap">36개월</th>
+                      <th className="px-4 py-4 text-center font-semibold text-neutral-700 border-r border-neutral-200 whitespace-nowrap">48개월</th>
+                      <th className="px-4 py-4 text-center font-semibold text-neutral-700 whitespace-nowrap">60개월</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* 65인치 */}
+                    <tr className="border-b border-neutral-200 hover:bg-neutral-50 transition-colors">
+                      <td rowSpan="2" className="px-6 py-5 text-center font-bold text-accent border-r border-neutral-200 align-middle">65인치</td>
+                      <td className="px-6 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">벽걸이</td>
+                      <td className="px-4 py-4 text-center font-semibold text-neutral-900 border-r border-neutral-200 whitespace-nowrap">2,250,000원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">117,700원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">82,500원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">67,100원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 whitespace-nowrap">58,300원</td>
+                    </tr>
+                    <tr className="border-b-2 border-neutral-300 hover:bg-neutral-50 transition-colors">
+                      <td className="px-6 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">이동형 스탠드</td>
+                      <td className="px-4 py-4 text-center font-semibold text-neutral-900 border-r border-neutral-200 whitespace-nowrap">2,550,000원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">133,100원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">93,500원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">75,900원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 whitespace-nowrap">66,000원</td>
+                    </tr>
+                    
+                    {/* 75인치 */}
+                    <tr className="border-b border-neutral-200 hover:bg-neutral-50 transition-colors">
+                      <td rowSpan="2" className="px-6 py-5 text-center font-bold text-accent border-r border-neutral-200 align-middle">75인치</td>
+                      <td className="px-6 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">벽걸이</td>
+                      <td className="px-4 py-4 text-center font-semibold text-neutral-900 border-r border-neutral-200 whitespace-nowrap">2,750,000원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">143,000원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">101,200원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">82,500원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 whitespace-nowrap">71,500원</td>
+                    </tr>
+                    <tr className="border-b-2 border-neutral-300 hover:bg-neutral-50 transition-colors">
+                      <td className="px-6 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">이동형 스탠드</td>
+                      <td className="px-4 py-4 text-center font-semibold text-neutral-900 border-r border-neutral-200 whitespace-nowrap">3,050,000원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">158,400원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">112,200원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">91,300원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 whitespace-nowrap">79,200원</td>
+                    </tr>
+                    
+                    {/* 86인치 */}
+                    <tr className="border-b border-neutral-200 hover:bg-neutral-50 transition-colors">
+                      <td rowSpan="2" className="px-6 py-5 text-center font-bold text-accent border-r border-neutral-200 align-middle">86인치</td>
+                      <td className="px-6 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">벽걸이</td>
+                      <td className="px-4 py-4 text-center font-semibold text-neutral-900 border-r border-neutral-200 whitespace-nowrap">3,450,000원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">179,300원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">126,500원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">102,300원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 whitespace-nowrap">89,100원</td>
+                    </tr>
+                    <tr className="border-b-2 border-neutral-300 hover:bg-neutral-50 transition-colors">
+                      <td className="px-6 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">이동형 스탠드</td>
+                      <td className="px-4 py-4 text-center font-semibold text-neutral-900 border-r border-neutral-200 whitespace-nowrap">3,850,000원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">200,200원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">141,900원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">114,400원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 whitespace-nowrap">99,000원</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div className="bg-accent/5 rounded-lg p-4 border border-accent/20 mt-6">
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  <strong className="text-accent">※ 할부 금융 프로그램 진행시 추가 서류가 필요합니다.</strong><br />
+                  ※ 할부 완납시 소유권이 구매자에게 이전 됩니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <footer className="py-10 border-t border-neutral-200 bg-surface">
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <span className="text-neutral-500 text-sm">NEXO x 성공운</span>
