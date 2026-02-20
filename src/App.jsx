@@ -709,7 +709,7 @@ const App = () => {
                 {console.log('🔍 [가격표 디버깅] 테이블 컨테이너 렌더링 중...')}
                 <div className="text-xs text-neutral-500 mb-2 text-center md:hidden">← 좌우로 스크롤하여 전체 내용을 확인하세요 →</div>
                 <table 
-                  className="w-full border-collapse bg-white text-base min-w-[800px]"
+                  className="w-full border-collapse bg-white text-base min-w-[900px]"
                   style={{ whiteSpace: 'nowrap' }}
                   onLoad={() => console.log('🔍 [가격표 디버깅] 테이블 로드 완료')}
                 >
@@ -717,12 +717,13 @@ const App = () => {
                     <tr className="bg-accent/10 border-b-2 border-accent/30">
                       <th className="px-4 py-4 text-left font-bold text-neutral-900 border-r border-neutral-200 text-sm md:text-base">크기</th>
                       <th colSpan="2" className="px-4 py-4 text-center font-bold text-neutral-900 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">현금/신용카드</th>
-                      <th colSpan="4" className="px-4 py-4 text-center font-bold text-neutral-900 bg-accent/5 text-sm md:text-base whitespace-nowrap">금융사 할부 월 납입액</th>
+                      <th colSpan="5" className="px-4 py-4 text-center font-bold text-neutral-900 bg-accent/5 text-sm md:text-base whitespace-nowrap">금융사 할부 월 납입액</th>
                     </tr>
                     <tr className="bg-accent/5 border-b border-neutral-200">
                       <th className="px-4 py-3 text-left font-semibold text-neutral-700 border-r border-neutral-200 text-xs md:text-sm"></th>
                       <th className="px-4 py-3 text-center font-semibold text-neutral-700 border-r border-neutral-200 text-xs md:text-sm"></th>
                       <th className="px-4 py-3 text-center font-semibold text-neutral-700 border-r border-neutral-200 text-xs md:text-sm whitespace-nowrap">일시불</th>
+                      <th className="px-3 py-3 text-center font-semibold text-neutral-700 border-r border-neutral-200 text-xs md:text-sm whitespace-nowrap">12개월</th>
                       <th className="px-3 py-3 text-center font-semibold text-neutral-700 border-r border-neutral-200 text-xs md:text-sm whitespace-nowrap">24개월</th>
                       <th className="px-3 py-3 text-center font-semibold text-neutral-700 border-r border-neutral-200 text-xs md:text-sm whitespace-nowrap">36개월</th>
                       <th className="px-3 py-3 text-center font-semibold text-neutral-700 border-r border-neutral-200 text-xs md:text-sm whitespace-nowrap">48개월</th>
@@ -735,6 +736,7 @@ const App = () => {
                       <td rowSpan="2" className="px-4 py-4 text-center font-bold text-accent border-r border-neutral-200 align-middle text-sm md:text-base">65인치</td>
                       <td className="px-4 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">벽걸이</td>
                       <td className="px-3 py-3 text-center font-semibold text-neutral-900 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">2,250,000원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">223,300원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">117,700원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">82,500원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">67,100원</td>
@@ -743,6 +745,7 @@ const App = () => {
                     <tr className="border-b-2 border-neutral-300 hover:bg-neutral-50 transition-colors">
                       <td className="px-4 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">이동형 스탠드</td>
                       <td className="px-3 py-3 text-center font-semibold text-neutral-900 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">2,550,000원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">253,000원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">133,100원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">93,500원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">75,900원</td>
@@ -754,6 +757,7 @@ const App = () => {
                       <td rowSpan="2" className="px-4 py-4 text-center font-bold text-accent border-r border-neutral-200 align-middle text-sm md:text-base">75인치</td>
                       <td className="px-4 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">벽걸이</td>
                       <td className="px-3 py-3 text-center font-semibold text-neutral-900 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">2,750,000원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">272,800원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">143,000원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">101,200원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">82,500원</td>
@@ -762,6 +766,7 @@ const App = () => {
                     <tr className="border-b-2 border-neutral-300 hover:bg-neutral-50 transition-colors">
                       <td className="px-4 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">이동형 스탠드</td>
                       <td className="px-3 py-3 text-center font-semibold text-neutral-900 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">3,050,000원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">302,500원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">158,400원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">112,200원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">91,300원</td>
@@ -773,6 +778,7 @@ const App = () => {
                       <td rowSpan="2" className="px-4 py-4 text-center font-bold text-accent border-r border-neutral-200 align-middle text-sm md:text-base">86인치</td>
                       <td className="px-4 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">벽걸이</td>
                       <td className="px-3 py-3 text-center font-semibold text-neutral-900 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">3,450,000원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">342,100원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">179,300원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">126,500원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">102,300원</td>
@@ -781,6 +787,7 @@ const App = () => {
                     <tr className="border-b-2 border-neutral-300 hover:bg-neutral-50 transition-colors">
                       <td className="px-4 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">이동형 스탠드</td>
                       <td className="px-3 py-3 text-center font-semibold text-neutral-900 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">3,850,000원</td>
+                      <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">381,700원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">200,200원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">141,900원</td>
                       <td className="px-3 py-3 text-center text-neutral-700 border-r border-neutral-200 text-sm md:text-base whitespace-nowrap">114,400원</td>
@@ -924,12 +931,13 @@ const App = () => {
                     <tr className="bg-accent/10 border-b-2 border-accent/30">
                       <th className="px-6 py-5 text-left font-bold text-neutral-900 border-r border-neutral-200">크기</th>
                       <th colSpan="2" className="px-6 py-5 text-center font-bold text-neutral-900 border-r border-neutral-200 whitespace-nowrap">현금/신용카드</th>
-                      <th colSpan="4" className="px-6 py-5 text-center font-bold text-neutral-900 bg-accent/5 whitespace-nowrap">금융사 할부 월 납입액</th>
+                      <th colSpan="5" className="px-6 py-5 text-center font-bold text-neutral-900 bg-accent/5 whitespace-nowrap">금융사 할부 월 납입액</th>
                     </tr>
                     <tr className="bg-accent/5 border-b border-neutral-200">
                       <th className="px-6 py-4 text-left font-semibold text-neutral-700 border-r border-neutral-200"></th>
                       <th className="px-6 py-4 text-center font-semibold text-neutral-700 border-r border-neutral-200"></th>
                       <th className="px-6 py-4 text-center font-semibold text-neutral-700 border-r border-neutral-200 whitespace-nowrap">일시불</th>
+                      <th className="px-4 py-4 text-center font-semibold text-neutral-700 border-r border-neutral-200 whitespace-nowrap">12개월</th>
                       <th className="px-4 py-4 text-center font-semibold text-neutral-700 border-r border-neutral-200 whitespace-nowrap">24개월</th>
                       <th className="px-4 py-4 text-center font-semibold text-neutral-700 border-r border-neutral-200 whitespace-nowrap">36개월</th>
                       <th className="px-4 py-4 text-center font-semibold text-neutral-700 border-r border-neutral-200 whitespace-nowrap">48개월</th>
@@ -942,6 +950,7 @@ const App = () => {
                       <td rowSpan="2" className="px-6 py-5 text-center font-bold text-accent border-r border-neutral-200 align-middle">65인치</td>
                       <td className="px-6 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">벽걸이</td>
                       <td className="px-4 py-4 text-center font-semibold text-neutral-900 border-r border-neutral-200 whitespace-nowrap">2,250,000원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">223,300원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">117,700원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">82,500원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">67,100원</td>
@@ -950,6 +959,7 @@ const App = () => {
                     <tr className="border-b-2 border-neutral-300 hover:bg-neutral-50 transition-colors">
                       <td className="px-6 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">이동형 스탠드</td>
                       <td className="px-4 py-4 text-center font-semibold text-neutral-900 border-r border-neutral-200 whitespace-nowrap">2,550,000원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">253,000원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">133,100원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">93,500원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">75,900원</td>
@@ -961,6 +971,7 @@ const App = () => {
                       <td rowSpan="2" className="px-6 py-5 text-center font-bold text-accent border-r border-neutral-200 align-middle">75인치</td>
                       <td className="px-6 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">벽걸이</td>
                       <td className="px-4 py-4 text-center font-semibold text-neutral-900 border-r border-neutral-200 whitespace-nowrap">2,750,000원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">272,800원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">143,000원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">101,200원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">82,500원</td>
@@ -969,6 +980,7 @@ const App = () => {
                     <tr className="border-b-2 border-neutral-300 hover:bg-neutral-50 transition-colors">
                       <td className="px-6 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">이동형 스탠드</td>
                       <td className="px-4 py-4 text-center font-semibold text-neutral-900 border-r border-neutral-200 whitespace-nowrap">3,050,000원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">302,500원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">158,400원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">112,200원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">91,300원</td>
@@ -980,6 +992,7 @@ const App = () => {
                       <td rowSpan="2" className="px-6 py-5 text-center font-bold text-accent border-r border-neutral-200 align-middle">86인치</td>
                       <td className="px-6 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">벽걸이</td>
                       <td className="px-4 py-4 text-center font-semibold text-neutral-900 border-r border-neutral-200 whitespace-nowrap">3,450,000원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">342,100원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">179,300원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">126,500원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">102,300원</td>
@@ -988,6 +1001,7 @@ const App = () => {
                     <tr className="border-b-2 border-neutral-300 hover:bg-neutral-50 transition-colors">
                       <td className="px-6 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">이동형 스탠드</td>
                       <td className="px-4 py-4 text-center font-semibold text-neutral-900 border-r border-neutral-200 whitespace-nowrap">3,850,000원</td>
+                      <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">381,700원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">200,200원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">141,900원</td>
                       <td className="px-4 py-4 text-center text-neutral-700 border-r border-neutral-200 whitespace-nowrap">114,400원</td>
