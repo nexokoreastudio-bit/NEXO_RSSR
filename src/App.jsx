@@ -16,6 +16,7 @@ import {
   Target,
   Shield
 } from 'lucide-react';
+import ConsultationForm from './components/ConsultationForm.jsx';
 
 const scrollToOrder = () => {
   document.getElementById('order')?.scrollIntoView({ behavior: 'smooth' });
@@ -32,14 +33,6 @@ const App = () => {
     { icon: Clock, title: '시간이 절약된다', desc: '케이블 3초 연결, 원터치 녹화, OTA 자동 업데이트', color: 'accent' },
     { icon: Zap, title: '학생이 참여한다', desc: '50포인트 터치, 폰으로 바로 공유, QR로 즉시 전달', color: 'accent' },
     { icon: Shield, title: '운영이 편해진다', desc: '저녁까지 A/S, 무상 1년, 원격 지원', color: 'accent' },
-  ];
-
-  const chatMessages = [
-    { type: 'user', text: '전자칠판 공구 가격이 부담되는데...' },
-    { type: 'admin', text: '성공운 회원 전용 공동구매로 진행 중이에요.' },
-    { type: 'user', text: '가성비 좋은 모델 알려주세요!' },
-    { type: 'admin', text: 'NX 시리즈가 딱이에요. UMIND 판서 프로그램이 기본 제공됩니다.' },
-    { type: 'system', text: '성공운 원장님이 입장하셨습니다.' },
   ];
 
   const testimonials = [
@@ -77,7 +70,7 @@ const App = () => {
       { q: '인터넷 창과 판서 동시에 띄울 수 있나요?', a: '네, UMIND 분할 화면으로 한쪽엔 교재, 다른 쪽엔 칠판을 띄울 수 있어요.' },
     ],
     설치배송: [
-      { q: '엘리베이터 없는데 추가 비용 있나요?', a: '이번 공구 기간 무료입니다. 계단 운반비·사다리차도 본사 부담해요.' },
+      { q: '엘리베이터 없는데 추가 비용 있나요?', a: '현장 여건에 따라 설치 비용이 달라질 수 있어요. 상담 신청해주시면 정확히 안내해드립니다.' },
       { q: '기존 칠판 철거 해주시나요?', a: '상황에 따라 협의 가능합니다. 상담 시 문의해주세요.' },
       { q: '지방 학원도 설치 되나요?', a: '네, 전국 가능합니다. 수도권 무료, 수도권 외 11만원 추가예요.' },
     ],
@@ -89,7 +82,7 @@ const App = () => {
       { q: '아파트 거실이나 작은 방에 설치해도 되나요?', a: '네, 가능합니다. 벽걸이 또는 이동형 스탠드 선택이 가능해요.' },
       { q: '학생이 5~6명인데 괜찮을까요?', a: '65인치면 5~8명 수강생까지 무리 없어요. 50포인트 멀티터치로 여러 명이 동시에 칠판에 필기할 수 있어서 소규모 공부방에 적합합니다.' },
       { q: '집에서 쓰는데 PC 없이 전자칠판만으로 수업 가능한가요?', a: '네, 가능해요. UMIND 판서, Eshare로 폰·태블릿 연결, Quick Share로 교재 사진 공유까지 전자칠판 단독으로 수업하시는 원장님이 많습니다.' },
-      { q: '소규모라 가격이 부담되는데 할부·할인 있나요?', a: '성공운 회원 전용 특별 할인가가 적용되고, 할부도 가능해요. 상담 신청하시면 맞춤 견적·할부 조건 안내해 드립니다.' },
+      { q: '소규모라 가격이 부담되는데 할부·할인 있나요?', a: '상담 시 예산과 운영 규모에 맞춰 할부 및 견적을 안내해 드립니다.' },
     ],
   };
 
@@ -100,21 +93,21 @@ const App = () => {
       {/* Top Bar */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur z-50 border-b border-neutral-100">
         <div className="max-w-6xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
-          <span className="font-extrabold text-xl text-neutral-900">NEXO <span className="text-accent">X 성공운</span></span>
+          <span className="font-extrabold text-xl text-neutral-900">NEXO <span className="text-accent">전자칠판</span></span>
           <nav className="hidden md:flex items-center gap-8">
             <a href="#value" className="text-neutral-600 hover:text-neutral-900 text-sm font-medium">가치</a>
             <a href="#video" className="text-neutral-600 hover:text-neutral-900 text-sm font-medium">시연</a>
             <a href="#reviews" className="text-neutral-600 hover:text-neutral-900 text-sm font-medium">후기</a>
             <a href="tel:032-569-5771" className="text-neutral-600 hover:text-accent text-sm flex items-center gap-1"><Phone className="w-4 h-4" /><span className="text-accent font-bold">032.569.5771</span></a>
           </nav>
-          <button onClick={scrollToOrder} className="bg-accent text-white px-5 py-2 rounded-lg text-sm font-bold hover:opacity-90 whitespace-nowrap">공구 마감 안내</button>
+          <button onClick={scrollToOrder} className="bg-accent text-white px-5 py-2 rounded-lg text-sm font-bold hover:opacity-90 whitespace-nowrap">상담 신청</button>
         </div>
       </header>
 
       {/* Hero */}
       <section className="pt-[3.5rem] pb-0 bg-surface">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <img src="/hero-main.png" alt="NEXO 전자칠판 공동구매" className="w-full h-auto object-contain" />
+          <img src="/main_nexo.png" alt="NEXO 전자칠판 상담 신청" className="w-full h-auto object-contain" />
         </div>
       </section>
 
@@ -202,29 +195,6 @@ const App = () => {
               <img src="/math-3d-graph.png" alt="수학 3D" className="w-full aspect-video object-cover rounded-xl mb-4" />
               <h4 className="font-extrabold text-lg md:text-xl text-neutral-900 mb-1">수학 3D</h4>
               <p className="text-neutral-600 text-xs">구방정식 1초에 시각화</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 오픈채팅 - 축약 */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="max-w-2xl mx-auto px-4">
-          <div className="bg-surfaceAlt rounded-2xl border border-neutral-100 overflow-hidden">
-            <div className="bg-neutral-800 text-white px-4 py-3 flex items-center gap-2">
-              <MessageCircle className="w-4 h-4" />
-              <span className="font-extrabold text-base md:text-lg">성공운 공구 오픈채팅</span>
-            </div>
-            <div className="p-4 space-y-3 min-h-[140px]">
-              {chatMessages.map((msg, i) => (
-                msg.type === 'system' ? <div key={i} className="flex justify-center"><span className="bg-neutral-200 text-neutral-600 text-sm px-3 py-1 rounded-full">{msg.text}</span></div>
-                : msg.type === 'user' ? <div key={i} className="flex gap-2"><div className="w-7 h-7 rounded-full bg-accent/20 shrink-0" /><div className="bg-amber-50 text-sm px-3 py-2 rounded-xl max-w-[80%]">{msg.text}</div></div>
-                : <div key={i} className="flex gap-2 justify-end"><div className="bg-neutral-200 text-sm px-3 py-2 rounded-xl max-w-[80%]">{msg.text}</div><div className="w-7 h-7 rounded-full bg-accent/30 shrink-0" /></div>
-              ))}
-            </div>
-            <div className="bg-accent text-white px-6 py-4 flex items-center justify-between">
-              <span className="font-extrabold text-base md:text-lg">NEXO X 성공운 한정 공동구매</span>
-              <ArrowRight className="w-5 h-5 shrink-0" />
             </div>
           </div>
         </div>
@@ -412,7 +382,7 @@ const App = () => {
         <div className="max-w-5xl mx-auto px-4 md:px-6">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-neutral-900">원장님들 후기</h2>
-            <p className="text-neutral-600 mt-2 text-base font-semibold">직전 공구 참여 원장님들의 생생한 이야기</p>
+            <p className="text-neutral-600 mt-2 text-base font-semibold">실사용 원장님들의 생생한 이야기</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
@@ -433,9 +403,9 @@ const App = () => {
       {/* Price CTA */}
       <section className="py-16 md:py-20 bg-neutral-900 text-white">
         <div className="max-w-xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">성공운 회원 전용 파격 혜택</h2>
-          <p className="text-neutral-400 mb-8 text-base font-semibold">비교할 수 없는 단독 가격을 확인하세요</p>
-          <button onClick={scrollToOrder} className="w-full bg-accent text-white py-4 rounded-xl font-bold hover:bg-accent/90 transition-all">공구 마감 안내 보기</button>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">전자칠판 상담 신청</h2>
+          <p className="text-neutral-400 mb-8 text-base font-semibold">환경에 맞는 모델과 견적을 빠르게 안내해드립니다</p>
+          <button onClick={scrollToOrder} className="w-full bg-accent text-white py-4 rounded-xl font-bold hover:bg-accent/90 transition-all">상담 신청하기</button>
         </div>
       </section>
 
@@ -466,33 +436,20 @@ const App = () => {
         </div>
       </section>
 
-      {/* 공구 마감 공지 */}
+      {/* 상담 신청 */}
       <section id="order" className="py-16 md:py-20 bg-white scroll-mt-20">
-        <div className="max-w-xl mx-auto px-4 md:px-6">
+        <div className="max-w-3xl mx-auto px-4 md:px-6">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-extrabold text-neutral-900 mb-3">수업의 품격을 높여보세요</h2>
             <p className="text-neutral-600 text-sm font-semibold">간단한 양식으로 견적 받기</p>
           </div>
-          <div className="bg-surfaceAlt p-8 md:p-12 rounded-2xl border-2 border-neutral-200 text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-neutral-200 mb-6">
-              <svg className="w-8 h-8 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 className="text-xl md:text-2xl font-extrabold text-neutral-900 mb-3">공동구매 마감 안내</h3>
-            <p className="text-neutral-600 text-base mb-2">2026년 3월 1일 부로 성공운 x 넥소 전자칠판 공동구매가 마감되었습니다.</p>
-            <p className="text-neutral-500 text-sm mb-6">참여해 주신 분들께 감사드립니다.</p>
-            <a href="tel:032-569-5771" className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-xl font-bold hover:bg-accent/90 transition-colors">
-              <Phone className="w-5 h-5" />
-              문의: 032.569.5771
-            </a>
-          </div>
+          <ConsultationForm showExternalLinks />
         </div>
       </section>
 
       <footer className="py-10 border-t border-neutral-200 bg-surface">
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-          <span className="text-neutral-500 text-sm">NEXO x 성공운</span>
+          <span className="text-neutral-500 text-sm">NEXO 전자칠판</span>
           <div className="flex gap-6 text-neutral-500 text-xs">
             <a href="https://nexokorea.co.kr" target="_blank" rel="noopener noreferrer" className="hover:text-accent">넥소코리아</a>
             <a href="tel:032-569-5771" className="text-accent font-bold">032.569.5771</a>
