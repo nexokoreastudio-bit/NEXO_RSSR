@@ -1,6 +1,8 @@
-// Netlify Function: 주문 폼 제출 데이터를 Google Sheets에 저장 (성공운 랜딩)
-// Netlify 환경 변수: GOOGLE_SHEET_ID, GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY
+// Netlify Function: 상담 폼 제출 데이터를 Google Sheets에 저장
+// Netlify 환경 변수: GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY
+// 선택: GOOGLE_SHEET_ID (미설정 시 기본 시트 ID 사용)
 const { google } = require('googleapis');
+const DEFAULT_SHEET_ID = '1q-zYe2ouTsx--at6dzwgQFlo6jOUE5Uuq5XypDe2ASo';
 
 const headers = {
   'Access-Control-Allow-Origin': '*',
@@ -17,20 +19,21 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const body = JSON.parse(event.body);
+    const body = event.body ? JSON.parse(event.body) : {};
     const {
       GOOGLE_SHEET_ID,
       GOOGLE_SERVICE_ACCOUNT_EMAIL,
       GOOGLE_PRIVATE_KEY,
     } = process.env;
+    const spreadsheetId = GOOGLE_SHEET_ID || DEFAULT_SHEET_ID;
 
-    if (!GOOGLE_SHEET_ID || !GOOGLE_SERVICE_ACCOUNT_EMAIL || !GOOGLE_PRIVATE_KEY) {
+    if (!GOOGLE_SERVICE_ACCOUNT_EMAIL || !GOOGLE_PRIVATE_KEY) {
       return {
         statusCode: 500,
         headers,
         body: JSON.stringify({
           error: 'Server configuration error',
-          details: 'Missing environment variables (GOOGLE_SHEET_ID, GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY)',
+          details: 'Missing environment variables (GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY)',
         }),
       };
     }
@@ -45,7 +48,13 @@ exports.handler = async (event, context) => {
       mount_type,
       elevator,
       payment,
+      call_time,
       call_time_slots,
+      qty_65,
+      qty_75,
+      qty_86,
+      quantity,
+      additional_inquiry,
     } = body;
 
     const auth = new google.auth.GoogleAuth({
@@ -57,9 +66,9 @@ exports.handler = async (event, context) => {
     });
 
     const sheets = google.sheets({ version: 'v4', auth });
-    const meta = await sheets.spreadsheets.get({ spreadsheetId: GOOGLE_SHEET_ID });
+    const meta = await sheets.spreadsheets.get({ spreadsheetId });
     const firstSheetTitle = meta.data.sheets?.[0]?.properties?.title || 'Sheet1';
-    const range = `'${firstSheetTitle}'!A:L`;
+    const range = `'${firstSheetTitle}'!A:Q`;
 
     const timestamp = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
 
@@ -74,12 +83,17 @@ exports.handler = async (event, context) => {
       mount_type || '',
       elevator || '',
       payment || '',
-      call_time_slots || '',
-      '성공운',
+      call_time || call_time_slots || '',
+      qty_65 || '0',
+      qty_75 || '0',
+      qty_86 || '0',
+      quantity || '',
+      additional_inquiry || '',
+      '성공운 상담',
     ];
 
     await sheets.spreadsheets.values.append({
-      spreadsheetId: GOOGLE_SHEET_ID,
+      spreadsheetId,
       range,
       valueInputOption: 'USER_ENTERED',
       insertDataOption: 'INSERT_ROWS',
