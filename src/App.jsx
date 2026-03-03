@@ -182,7 +182,7 @@ const App = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white rounded-2xl p-6 border border-neutral-100">
-              <img src="/nexo-classroom-real.png" alt="교실" className="w-full aspect-video object-cover rounded-xl mb-4" />
+              <img src="/umaind.png" alt="교실 수업 UMIND" className="w-full aspect-video object-cover rounded-xl mb-4" />
               <h4 className="font-extrabold text-lg md:text-xl text-neutral-900 mb-1">교실 수업</h4>
               <p className="text-neutral-600 text-xs">자·도형·마인드맵·스티커 메모</p>
             </div>
