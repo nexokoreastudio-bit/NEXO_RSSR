@@ -3,6 +3,25 @@ const headers = {
   'Access-Control-Allow-Headers': 'Content-Type',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
+const fs = require('fs');
+const path = require('path');
+
+const manualReference = (() => {
+  try {
+    const filePath = path.join(__dirname, 'references', 'nexo-manual-reference.json');
+    const raw = fs.readFileSync(filePath, 'utf-8');
+    return JSON.parse(raw);
+  } catch (e) {
+    return { source_files: [], facts: [], safety_rules: [] };
+  }
+})();
+
+const manualContext = [
+  '[매뉴얼 참조 데이터]',
+  `source_files: ${manualReference.source_files.join(', ') || 'none'}`,
+  `facts:\n${(manualReference.facts || []).map((f) => `- ${f}`).join('\n')}`,
+  `safety_rules:\n${(manualReference.safety_rules || []).map((r) => `- ${r}`).join('\n')}`,
+].join('\n');
 
 const extractJson = (text) => {
   const cleaned = String(text || '').replace(/```json|```/g, '').trim();
@@ -32,6 +51,7 @@ const makePostPrompt = (inputs) => {
   return [
     '당신은 한국어 카페 홍보 글 작성 도우미입니다.',
     '목표: 네이버 카페 업로드용 주간 홍보글 초안을 만듭니다.',
+    '반드시 제공된 매뉴얼 참조 데이터를 우선 근거로 사용하세요.',
     '출력은 반드시 JSON 한 개만 반환하세요.',
     '키는 title, body 만 사용하세요.',
     'body는 자연스러운 한국어 문장으로 작성하고 줄바꿈을 포함하세요.',
@@ -45,6 +65,8 @@ const makePostPrompt = (inputs) => {
     `설치사례: ${installs}`,
     `CTA: ${cta}`,
     '',
+    manualContext,
+    '',
     '반드시 아래 형태로만 응답:',
     '{"title":"...","body":"..."}',
   ].join('\n');
@@ -55,11 +77,14 @@ const makeReplyPrompt = (inputs) => {
 
   return [
     '당신은 한국어 고객 문의 댓글 답변 작성 도우미입니다.',
+    '반드시 제공된 매뉴얼 참조 데이터를 우선 근거로 사용하세요.',
     '출력은 반드시 JSON 한 개만 반환하세요.',
     '키는 reply 하나만 사용하세요.',
     `톤: ${stance}`,
     `문의내용: ${question}`,
     `마무리 연락문구: ${contact}`,
+    '',
+    manualContext,
     '',
     '조건:',
     '- 3~4문장으로 간결하게 작성',
